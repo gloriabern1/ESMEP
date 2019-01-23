@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,16 +44,43 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    <Reference Include="EPPlus, Version=4.5.2.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.2.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Excel.1.0.0\lib\dotnet\Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -175,7 +201,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
@@ -191,13 +216,200 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
-    <Content Include="Contact.aspx" />
+    <Content Include="Content\assets\css\material_style.css" />
+    <Content Include="Content\assets\css\pages\extra_pages.css" />
+    <Content Include="Content\assets\css\pages\formlayout.css" />
+    <Content Include="Content\assets\css\pages\inbox.min.css" />
+    <Content Include="Content\assets\css\pages\typography.css" />
+    <Content Include="Content\assets\css\plugins.min.css" />
+    <Content Include="Content\assets\css\responsive.css" />
+    <Content Include="Content\assets\css\theme\light\style.css" />
+    <Content Include="Content\assets\css\theme\light\theme-color.css" />
+    <Content Include="Content\assets\css\theme\light\theme_style.css" />
+    <Content Include="Content\assets\img\bg.jpg" />
+    <Content Include="Content\assets\img\blog\blog1.jpg" />
+    <Content Include="Content\assets\img\blog\blog2.jpg" />
+    <Content Include="Content\assets\img\blog\blog3.jpg" />
+    <Content Include="Content\assets\img\blog\blog4.jpg" />
+    <Content Include="Content\assets\img\course\course1.jpg" />
+    <Content Include="Content\assets\img\course\course2.jpg" />
+    <Content Include="Content\assets\img\course\course3.jpg" />
+    <Content Include="Content\assets\img\course\course4.jpg" />
+    <Content Include="Content\assets\img\bg-01.jpg" />
+    <Content Include="Content\assets\img\dp.jpg" />
+    <Content Include="Content\assets\img\flags\de.png" />
+    <Content Include="Content\assets\img\flags\es.png" />
+    <Content Include="Content\assets\img\flags\gb.png" />
+    <Content Include="Content\assets\img\flags\ru.png" />
+    <Content Include="Content\assets\img\flags\ua.png" />
+    <Content Include="Content\assets\img\images.png" />
+    <Content Include="Content\assets\img\invoice_logo.png" />
+    <Content Include="Content\assets\img\logo-2.png" />
+    <Content Include="Content\assets\img\mega-img1.jpg" />
+    <Content Include="Content\assets\img\mega-img2.jpg" />
+    <Content Include="Content\assets\img\mega-img3.jpg" />
+    <Content Include="Content\assets\img\prof\prof1.jpg" />
+    <Content Include="Content\assets\img\prof\prof10.jpg" />
+    <Content Include="Content\assets\img\prof\prof2.jpg" />
+    <Content Include="Content\assets\img\prof\prof3.jpg" />
+    <Content Include="Content\assets\img\prof\prof4.jpg" />
+    <Content Include="Content\assets\img\prof\prof5.jpg" />
+    <Content Include="Content\assets\img\prof\prof6.jpg" />
+    <Content Include="Content\assets\img\prof\prof7.jpg" />
+    <Content Include="Content\assets\img\prof\prof8.jpg" />
+    <Content Include="Content\assets\img\prof\prof9.jpg" />
+    <Content Include="Content\assets\img\slider\fullimage1.jpg" />
+    <Content Include="Content\assets\img\slider\fullimage2.jpg" />
+    <Content Include="Content\assets\img\slider\fullimage3.jpg" />
+    <Content Include="Content\assets\img\slider\owl1.jpg" />
+    <Content Include="Content\assets\img\slider\owl2.jpg" />
+    <Content Include="Content\assets\img\slider\owl3.jpg" />
+    <Content Include="Content\assets\img\slider\owl4.jpg" />
+    <Content Include="Content\assets\img\slider\owl5.jpg" />
+    <Content Include="Content\assets\img\slider\owl6.jpg" />
+    <Content Include="Content\assets\img\slider\owl7.jpg" />
+    <Content Include="Content\assets\img\slider\owl8.jpg" />
+    <Content Include="Content\assets\img\slider\slider1.jpg" />
+    <Content Include="Content\assets\img\slider\slider2.jpg" />
+    <Content Include="Content\assets\img\slider\slider3.jpg" />
+    <Content Include="Content\assets\img\std\std1.jpg" />
+    <Content Include="Content\assets\img\std\std10.jpg" />
+    <Content Include="Content\assets\img\std\std2.jpg" />
+    <Content Include="Content\assets\img\std\std3.jpg" />
+    <Content Include="Content\assets\img\std\std4.jpg" />
+    <Content Include="Content\assets\img\std\std5.jpg" />
+    <Content Include="Content\assets\img\std\std6.jpg" />
+    <Content Include="Content\assets\img\std\std7.jpg" />
+    <Content Include="Content\assets\img\std\std8.jpg" />
+    <Content Include="Content\assets\img\std\std9.jpg" />
+    <Content Include="Content\assets\js\app.js" />
+    <Content Include="Content\assets\js\layout.js" />
+    <Content Include="Content\assets\js\pages\calendar\calendar.min.js" />
+    <Content Include="Content\assets\js\pages\chart\chartjs\chartjs-data.js" />
+    <Content Include="Content\assets\js\pages\chart\chartjs\home-data.js" />
+    <Content Include="Content\assets\js\pages\chart\chartjs\home-data2.js" />
+    <Content Include="Content\assets\js\pages\chart\chartjs\home-data3.js" />
+    <Content Include="Content\assets\js\pages\chart\echart\echart-data.js" />
+    <Content Include="Content\assets\js\pages\chart\morris\morris_chart_data.js" />
+    <Content Include="Content\assets\js\pages\extra-pages\pages.js" />
+    <Content Include="Content\assets\js\pages\map\google-maps-data.js" />
+    <Content Include="Content\assets\js\pages\map\vector-data.js" />
+    <Content Include="Content\assets\js\pages\material-loading\material-loading.js" />
+    <Content Include="Content\assets\js\pages\material-select\getmdl-select.js" />
+    <Content Include="Content\assets\js\pages\owl-carousel\owl_data.js" />
+    <Content Include="Content\assets\js\pages\select2\select2-init.js" />
+    <Content Include="Content\assets\js\pages\sparkline\sparkline-data.js" />
+    <Content Include="Content\assets\js\pages\steps\steps-data.js" />
+    <Content Include="Content\assets\js\pages\summernote\summernote-data.js" />
+    <Content Include="Content\assets\js\pages\table\table_data.js" />
+    <Content Include="Content\assets\js\pages\treeview\treeview-data.js" />
+    <Content Include="Content\assets\js\pages\validation\form-validation.js" />
+    <Content Include="Content\assets\js\theme-color.js" />
+    <Content Include="Content\assets\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
+    <Content Include="Content\assets\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha-horizontal.png" />
+    <Content Include="Content\assets\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha.png" />
+    <Content Include="Content\assets\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\hue-horizontal.png" />
+    <Content Include="Content\assets\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\hue.png" />
+    <Content Include="Content\assets\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\saturation.png" />
+    <Content Include="Content\assets\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker-init.js" />
+    <Content Include="Content\assets\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
+    <Content Include="Content\assets\plugins\bootstrap-datepicker\css\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\assets\plugins\bootstrap-datepicker\js\bootstrap-datepicker.min.js" />
+    <Content Include="Content\assets\plugins\bootstrap-datetimepicker\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\assets\plugins\bootstrap-datetimepicker\js\bootstrap-datetimepicker-init.js" />
+    <Content Include="Content\assets\plugins\bootstrap-datetimepicker\js\bootstrap-datetimepicker.js" />
+    <Content Include="Content\assets\plugins\bootstrap-editable\bootstrap-editable\css\bootstrap-editable.css" />
+    <Content Include="Content\assets\plugins\bootstrap-editable\bootstrap-editable\img\clear.png" />
+    <Content Include="Content\assets\plugins\bootstrap-editable\bootstrap-editable\img\loading.gif" />
+    <Content Include="Content\assets\plugins\bootstrap-editable\inputs-ext\address\address.css" />
+    <Content Include="Content\assets\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" />
+    <Content Include="Content\assets\plugins\bootstrap-switch\js\bootstrap-switch.min.js" />
+    <Content Include="Content\assets\plugins\bootstrap-tabdrop\js\bootstrap-tabdrop.js" />
+    <Content Include="Content\assets\plugins\bootstrap-treeview\bootstrap-treeview.js" />
+    <Content Include="Content\assets\plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\assets\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\assets\plugins\chart-js\Chart.bundle.js" />
+    <Content Include="Content\assets\plugins\chart-js\utils.js" />
+    <Content Include="Content\assets\plugins\counterup\jquery.counterup.min.js" />
+    <Content Include="Content\assets\plugins\counterup\jquery.waypoints.min.js" />
+    <Content Include="Content\assets\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Content\assets\plugins\datatables\plugins\bootstrap\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\assets\plugins\datatables\plugins\bootstrap\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\assets\plugins\dropzone\dropzone-call.js" />
+    <Content Include="Content\assets\plugins\dropzone\dropzone.css" />
+    <Content Include="Content\assets\plugins\dropzone\dropzone.js" />
+    <Content Include="Content\assets\plugins\echarts\echarts.js" />
+    <Content Include="Content\assets\plugins\fullcalendar\fullcalendar.css" />
+    <Content Include="Content\assets\plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Content\assets\plugins\gmaps\gmaps.min.js" />
+    <Content Include="Content\assets\plugins\iconic\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\assets\plugins\jquery-blockui\jquery.blockui.min.js" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\blueimp-gallery\blueimp-gallery.min.css" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\css\jquery.fileupload-ui.css" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\css\jquery.fileupload.css" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\error.html" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\loading.gif" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\play-pause.html" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\progressbar.gif" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\video-play.html" />
+    <Content Include="Content\assets\plugins\jquery-slimscroll\jquery.slimscroll.js" />
+    <Content Include="Content\assets\plugins\jquery-tags-input\jquery-tags-input-init.js" />
+    <Content Include="Content\assets\plugins\jquery-tags-input\jquery-tags-input.css" />
+    <Content Include="Content\assets\plugins\jquery-tags-input\jquery-tags-input.js" />
+    <Content Include="Content\assets\plugins\jquery-toast\dist\jquery.toast.min.css" />
+    <Content Include="Content\assets\plugins\jquery-toast\dist\jquery.toast.min.js" />
+    <Content Include="Content\assets\plugins\jquery-toast\dist\toast.js" />
+    <Content Include="Content\assets\plugins\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Content\assets\plugins\jquery-validation\js\additional-methods.min.js" />
+    <Content Include="Content\assets\plugins\jquery-validation\js\jquery.validate.min.js" />
+    <Content Include="Content\assets\plugins\jquery\jquery.min.js" />
+    <Content Include="Content\assets\plugins\jqvmap\data\jquery.vmap.sampledata.js" />
+    <Content Include="Content\assets\plugins\jqvmap\jquery.vmap.js" />
+    <Content Include="Content\assets\plugins\jqvmap\jqvmap.css" />
+    <Content Include="Content\assets\plugins\jqvmap\maps\jquery.vmap.europe.js" />
+    <Content Include="Content\assets\plugins\jqvmap\maps\jquery.vmap.germany.js" />
+    <Content Include="Content\assets\plugins\jqvmap\maps\jquery.vmap.russia.js" />
+    <Content Include="Content\assets\plugins\jqvmap\maps\jquery.vmap.usa.js" />
+    <Content Include="Content\assets\plugins\jqvmap\maps\jquery.vmap.world.js" />
+    <Content Include="Content\assets\plugins\material-datetimepicker\bootstrap-material-datetimepicker.css" />
+    <Content Include="Content\assets\plugins\material-datetimepicker\bootstrap-material-datetimepicker.js" />
+    <Content Include="Content\assets\plugins\material-datetimepicker\datetimepicker.js" />
+    <Content Include="Content\assets\plugins\material-datetimepicker\moment-with-locales.min.js" />
+    <Content Include="Content\assets\plugins\material\material.min.css" />
+    <Content Include="Content\assets\plugins\material\material.min.js" />
+    <Content Include="Content\assets\plugins\moment\moment.min.js" />
+    <Content Include="Content\assets\plugins\morris\morris.css" />
+    <Content Include="Content\assets\plugins\morris\morris.min.js" />
+    <Content Include="Content\assets\plugins\morris\raphael-min.js" />
+    <Content Include="Content\assets\plugins\owl-carousel\AjaxLoader.html" />
+    <Content Include="Content\assets\plugins\owl-carousel\grabbing.html" />
+    <Content Include="Content\assets\plugins\owl-carousel\owl.carousel.css" />
+    <Content Include="Content\assets\plugins\owl-carousel\owl.carousel.js" />
+    <Content Include="Content\assets\plugins\owl-carousel\owl.theme.css" />
+    <Content Include="Content\assets\plugins\popper\popper.js" />
+    <Content Include="Content\assets\plugins\select2\css\select2-bootstrap.min.css" />
+    <Content Include="Content\assets\plugins\select2\css\select2.css" />
+    <Content Include="Content\assets\plugins\select2\js\select2.js" />
+    <Content Include="Content\assets\plugins\sparkline\jquery.sparkline.js" />
+    <Content Include="Content\assets\plugins\steps\jquery.steps.js" />
+    <Content Include="Content\assets\plugins\steps\steps.css" />
+    <Content Include="Content\assets\plugins\summernote\summernote.css" />
+    <Content Include="Content\assets\plugins\summernote\summernote.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\edostateSubeb.jpg" />
+    <Content Include="Content\img\Edo State.jpg" />
+    <Content Include="Content\img\EdoStateLogo.jpg" />
+    <Content Include="Content\img\images.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\font-awesome\css\font-awesome.min.css" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont3e6e.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\material-design-icons\material-icon.css" />
+    <Content Include="fonts\simple-line-icons\fonts\Simple-Line-Iconsb26c.svg" />
+    <Content Include="fonts\simple-line-icons\simple-line-icons.min.css" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -206,12 +418,147 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\about-us.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\contact.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\css\bootstrap\bootstrap.min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\css\font-awesome.min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\css\ionicons.min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\css\main.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\css\materialize.min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\css\responsive.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\css\style.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\ecommerce-solution.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\html-development.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\intro-tabs.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\logo.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\portfolio\img-1.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\portfolio\img-2.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\portfolio\img-3.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\portfolio\img-4.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\redixtouch.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\slides\1.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\slides\2.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\slides\3.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\slides\4.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\slides\5.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\images\why-choose-img.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\index.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\java-development.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\js\main.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\js\vendors\bootstrap.min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\js\vendors\flexslider\jquery.flexslider-min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\js\vendors\jquery.isotope.min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\js\vendors\jquery.prettyPhoto.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\js\vendors\jquery\jquery.min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\js\vendors\materialize.min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\js\vendors\modernizr.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\js\vendors\owl.carousel.min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\js\vendors\own-menu.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\js\vendors\wow.min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\pf-d-ecco.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\pf-d-jo.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\pf-w-admin-panel.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\portfolio-single.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\portfolio.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\responsive-webdesign.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\rs-plugin\css\settings.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\rs-plugin\js\jquery.themepunch.revolution.min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\rs-plugin\js\jquery.themepunch.tools.min.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\services.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\website-development.html.tmp" />
+    <Content Include="Content\assets\plugins\jquery-file-upload\img\website-redesign.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\about-us.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\contact.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\css\bootstrap\bootstrap.min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\css\font-awesome.min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\css\ionicons.min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\css\main.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\css\materialize.min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\css\responsive.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\css\style.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\ecommerce-solution.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\html-development.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\intro-tabs.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\logo.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\portfolio\img-1.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\portfolio\img-2.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\portfolio\img-3.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\portfolio\img-4.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\redixtouch.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\slides\1.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\slides\2.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\slides\3.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\slides\4.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\slides\5.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\images\why-choose-img.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\index.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\java-development.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\js\main.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\js\vendors\bootstrap.min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\js\vendors\flexslider\jquery.flexslider-min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\js\vendors\jquery.isotope.min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\js\vendors\jquery.prettyPhoto.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\js\vendors\jquery\jquery.min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\js\vendors\materialize.min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\js\vendors\modernizr.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\js\vendors\owl.carousel.min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\js\vendors\own-menu.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\js\vendors\wow.min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\pf-d-ecco.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\pf-d-jo.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\pf-w-admin-panel.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\portfolio-single.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\portfolio.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\responsive-webdesign.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\rs-plugin\css\settings.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\rs-plugin\js\jquery.themepunch.revolution.min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\rs-plugin\js\jquery.themepunch.tools.min.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\services.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\website-development.html.tmp" />
+    <Content Include="Content\assets\plugins\owl-carousel\website-redesign.html.tmp" />
+    <Content Include="Content\assets\plugins\summernote\font\summernote291f.eot" />
+    <Content Include="Content\assets\plugins\summernote\font\summernote291f.ttf" />
+    <Content Include="Content\assets\plugins\summernote\font\summernote291f.woff" />
+    <Content Include="Content\assets\plugins\summernote\font\summernoted41d.eot" />
+    <Content Include="Default.Master" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont3e6e.eot" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont3e6e.ttf" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont3e6e.woff" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont3e6e.woff2" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="fonts\material-design-icons\iconfont\MaterialIcons-Regular.eot" />
+    <Content Include="fonts\material-design-icons\iconfont\MaterialIcons-Regular.ttf" />
+    <Content Include="fonts\material-design-icons\iconfont\MaterialIcons-Regular.woff" />
+    <Content Include="fonts\material-design-icons\iconfont\MaterialIcons-Regular.woff2" />
+    <Content Include="fonts\simple-line-icons\fonts\Simple-Line-Iconsb26c.eot" />
+    <Content Include="fonts\simple-line-icons\fonts\Simple-Line-Iconsb26c.ttf" />
+    <Content Include="fonts\simple-line-icons\fonts\Simple-Line-Iconsb26c.woff" />
+    <Content Include="fonts\simple-line-icons\fonts\Simple-Line-Iconsb26c.woff2" />
+    <None Include="Properties\PublishProfiles\EdoStateMinistryofEducationPortal - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\EdoStateMinistryofEducationPortal - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Modules\Home.aspx" />
+    <Content Include="Modules\Inspectors\LgaInspector.aspx" />
+    <Content Include="Modules\Registration\AddSchool.aspx" />
+    <Content Include="Modules\Report\RegisteredSchool.aspx" />
+    <Content Include="Modules\Report\RegisteredStudent.aspx" />
+    <Content Include="Modules\School\AddStudent.aspx" />
+    <Content Include="Modules\School\AllRegisteredSchool.aspx" />
+    <Content Include="Modules\School\AllSchool.aspx" />
+    <Content Include="Modules\School\AllStudentBySchool.aspx" />
+    <Content Include="Modules\School\AllStudents.aspx" />
+    <Content Include="Modules\School\RegisterStudent.aspx" />
+    <Content Include="Modules\Registration\UploadSchool.aspx" />
+    <Content Include="Modules\School\AboutSchool.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Pages\AllSchool.js" />
+    <Content Include="Scripts\Pages\AllStudent.js" />
+    <Content Include="Scripts\Pages\DataTableInitialization.js" />
+    <Content Include="Scripts\Pages\RegisterStudent.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
@@ -237,119 +584,127 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
       <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\AddPhoneNumber.aspx.designer.cs">
       <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Confirm.aspx.cs">
       <DependentUpon>Confirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Confirm.aspx.designer.cs">
       <DependentUpon>Confirm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Forgot.aspx.cs">
       <DependentUpon>Forgot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Forgot.aspx.designer.cs">
       <DependentUpon>Forgot.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Lockout.aspx.cs">
       <DependentUpon>Lockout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Lockout.aspx.designer.cs">
       <DependentUpon>Lockout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Manage.aspx.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ManageLogins.aspx.cs">
       <DependentUpon>ManageLogins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\ManageLogins.aspx.designer.cs">
       <DependentUpon>ManageLogins.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ManagePassword.aspx.cs">
       <DependentUpon>ManagePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\ManagePassword.aspx.designer.cs">
       <DependentUpon>ManagePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\OpenAuthProviders.ascx.cs">
       <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
       <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
     </Compile>
     <Compile Include="Account\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\RegisterExternalLogin.aspx.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\ResetPassword.aspx.designer.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ResetPasswordConfirmation.aspx.cs">
       <DependentUpon>ResetPasswordConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\ResetPasswordConfirmation.aspx.designer.cs">
       <DependentUpon>ResetPasswordConfirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\TwoFactorAuthenticationSignIn.aspx.cs">
       <DependentUpon>TwoFactorAuthenticationSignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\TwoFactorAuthenticationSignIn.aspx.designer.cs">
       <DependentUpon>TwoFactorAuthenticationSignIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\VerifyPhoneNumber.aspx.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Content Include="App_Code\UploadFile.cs" />
+    <Content Include="App_Code\excelplus.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Controller\SchoolController.cs" />
+    <Compile Include="Controller\StudentPersonalDatasController.cs" />
+    <Compile Include="Controller\SubjectController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -357,10 +712,135 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Default.Master.cs">
+      <DependentUpon>Default.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.Master.designer.cs">
+      <DependentUpon>Default.Master</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\ExcelPlus.cs" />
+    <Compile Include="Infrastructure\Managers\DropDownManager.cs" />
+    <Compile Include="Infrastructure\Managers\StaticsManager.cs" />
+    <Compile Include="Models\AspNetRole.cs" />
+    <Compile Include="Models\AspNetUser.cs" />
+    <Compile Include="Models\AspNetUserClaim.cs" />
+    <Compile Include="Models\AspNetUserLogin.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\C__MigrationHistory.cs" />
+    <Compile Include="Models\ESMEPContext.cs" />
+    <Compile Include="Models\Examination.cs" />
+    <Compile Include="Models\ExaminationRegistered.cs" />
+    <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Inspector.cs" />
+    <Compile Include="Models\LocalGovernment.cs" />
+    <Compile Include="Models\MenuInRole.cs" />
+    <Compile Include="Models\MenuMain.cs" />
+    <Compile Include="Models\MenuSub.cs" />
+    <Compile Include="Models\Relationship.cs" />
+    <Compile Include="Models\School.cs" />
+    <Compile Include="Models\SchoolType.cs" />
+    <Compile Include="Models\Session.cs" />
+    <Compile Include="Models\State.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentGuardianDetial.cs" />
+    <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\Title.cs" />
+    <Compile Include="Modules\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Inspectors\LgaInspector.aspx.cs">
+      <DependentUpon>LgaInspector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Inspectors\LgaInspector.aspx.designer.cs">
+      <DependentUpon>LgaInspector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Registration\AddSchool.aspx.cs">
+      <DependentUpon>AddSchool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Registration\AddSchool.aspx.designer.cs">
+      <DependentUpon>AddSchool.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Report\RegisteredSchool.aspx.cs">
+      <DependentUpon>RegisteredSchool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Report\RegisteredSchool.aspx.designer.cs">
+      <DependentUpon>RegisteredSchool.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Report\RegisteredStudent.aspx.cs">
+      <DependentUpon>RegisteredStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Report\RegisteredStudent.aspx.designer.cs">
+      <DependentUpon>RegisteredStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\School\AddStudent.aspx.cs">
+      <DependentUpon>AddStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\AddStudent.aspx.designer.cs">
+      <DependentUpon>AddStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\School\AllRegisteredSchool.aspx.cs">
+      <DependentUpon>AllRegisteredSchool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\AllRegisteredSchool.aspx.designer.cs">
+      <DependentUpon>AllRegisteredSchool.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\School\AllSchool.aspx.cs">
+      <DependentUpon>AllSchool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\AllSchool.aspx.designer.cs">
+      <DependentUpon>AllSchool.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\School\AllStudentBySchool.aspx.cs">
+      <DependentUpon>AllStudentBySchool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\AllStudentBySchool.aspx.designer.cs">
+      <DependentUpon>AllStudentBySchool.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\School\AllStudents.aspx.cs">
+      <DependentUpon>AllStudents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\AllStudents.aspx.designer.cs">
+      <DependentUpon>AllStudents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\School\RegisterStudent.aspx.cs">
+      <DependentUpon>RegisterStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\RegisterStudent.aspx.designer.cs">
+      <DependentUpon>RegisterStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Registration\UploadSchool.aspx.cs">
+      <DependentUpon>UploadSchool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Registration\UploadSchool.aspx.designer.cs">
+      <DependentUpon>UploadSchool.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\School\AboutSchool.aspx.cs">
+      <DependentUpon>AboutSchool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\AboutSchool.aspx.designer.cs">
+      <DependentUpon>AboutSchool.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -371,13 +851,20 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Infrastructure\GenericRepository.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="ViewModels\AllViewModels.cs" />
+    <Compile Include="ViewModels\ExamDetailViewModel.cs" />
+    <Compile Include="ViewModels\StudentViewModel.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -385,6 +872,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\css\" />
+    <Folder Include="Static Content\Documents\" />
+    <Folder Include="Static Content\Logos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -426,7 +916,6 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

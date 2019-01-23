@@ -1,0 +1,273 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.master.cs" Inherits="ESMEP_EdoStateMinistryOfEducationPortal_.Default" %>
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+      <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="description" content="Responsive Admin Template" />
+    <meta name="author" content="SmartUniversity" />
+    <title>Edo State Examination Registration portal</title>
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+	<!-- icons -->
+    <link href="fonts/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="fonts/material-design-icons/material-icon.css" rel="stylesheet" type="text/css" />
+	<!--bootstrap -->
+	<link href="Content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="Content/assets/plugins/summernote/summernote.css" rel="stylesheet">
+    <!-- Material Design Lite CSS -->
+	<link rel="stylesheet" href="Content/assets/plugins/material/material.min.css">
+	<link rel="stylesheet" href="Content/assets/css/material_style.css">
+	<!-- inbox style -->
+    <link href="Content/assets/css/pages/inbox.min.css" rel="stylesheet" type="text/css" />
+	<!-- Theme Styles -->
+    <link href="Content/assets/css/theme/light/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
+    <link href="Content/assets/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="Content/assets/css/theme/light/style.css" rel="stylesheet" type="text/css" />
+    <link href="Content/assets/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="Content/assets/css/theme/light/theme-color.css" rel="stylesheet" type="text/css" />
+
+    <script src='<%=Page.ResolveUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
+    <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/jquery/jquery.min.js" )%>' ></script>
+    <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/popper/popper.js" )%>' ></script>
+    <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/jquery-blockui/jquery.blockui.min.js" )%>' ></script>
+	<script src='<%=Page.ResolveUrl("~/Content/assets/plugins/jquery-slimscroll/jquery.slimscroll.js")%>'></script>
+     <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/material/material.min.js") %>'></script>
+
+	<!-- favicon -->
+    <link rel="shortcut icon" href="http://radixtouch.in/templates/admin/smart/source/assets/img/favicon.ico" /> 
+ 
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+    <form id="form1" runat="server">
+    <div class="page-wrapper">
+        <!-- start header -->
+        
+        <div class="page-header navbar navbar-fixed-top">
+            <div class="page-header-inner ">
+                <!-- logo start -->
+                <div class="page-logo">
+                    <a href="index.html">
+                    <span class="logo-icon material-icons fa-rotate-45">school</span>
+                    <span class="logo-default" >EXAM PORTAL</span> </a>
+                </div>
+                <!-- logo end -->
+				<ul class="nav navbar-nav navbar-left in">
+					<li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
+				</ul>
+                <%-- <div class="search-form-opened">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search..." name="query">
+                        <span class="input-group-btn">
+                          <a href="javascript:;" class="btn submit">
+                             <i class="icon-magnifier"></i>
+                           </a>
+                        </span>
+                    </div>
+                </div>--%>
+                <!-- start mobile menu -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span></span>
+                </a>
+               <!-- end mobile menu -->
+                <!-- start header menu -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                    	<li><a href="javascript:;" class="fullscreen-btn"><i class="fa fa-arrows-alt"></i></a></li>
+                    	<!-- start language menu -->
+                    <%--    <li class="dropdown language-switch">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src='<%=Page.ResolveUrl("~/Content/assets/img/flags/gb.png") %>' class="position-left" alt=""> English <span class="fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="deutsch"><img src='<%=Page.ResolveUrl("~/Content/assets/img/flags/de.png") %>' alt=""> Deutsch</a>
+                                </li>
+                                <li>
+                                    <a class="ukrainian"><img src='<%=Page.ResolveUrl("~/Content/assets/img/flags/ua.png") %>' alt=""> Українська</a>
+                                </li>
+                                <li>
+                                    <a class="english"><img src='<%=Page.ResolveUrl("~/Content/assets/img/flags/ng.png") %>' alt=""> English</a>
+                                </li>
+                            </ul>
+                        </li>--%>
+                        <!-- end language menu -->
+                        <!-- start notification dropdown -->
+     <%--                   <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="badge headerBadgeColor1"> 6 </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="external">
+                                    <h3><span class="bold">Notifications</span></h3>
+                                    <span class="notification-label purple-bgcolor">New 6</span>
+                                </li>
+                                <li>
+                                    <ul class="dropdown-menu-list small-slimscroll-style" data-handle-color="#637283">
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">just now</span>
+                                                <span class="details">
+                                                <span class="notification-icon circle deepPink-bgcolor"><i class="fa fa-check"></i></span> Congratulations!. </span>
+                                            </a>
+                                        </li>
+                                       
+                                    </ul>
+                                    <div class="dropdown-menu-footer">
+                                        <a href="javascript:void(0)"> All notifications </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>--%>
+                        <!-- end notification dropdown -->
+ 						<!-- start manage user dropdown -->
+ 						<li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <img  src='<%=Page.ResolveUrl("~/Content/assets/img/images.png") %>' alt="" class="img-circle "/>
+                                <span class="username username-hide-on-mobile">
+                                    <asp:Label Text="" ID="lblUsername" runat="server" /> </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                          <%--      <li>
+                                    <a href="user_profile.html">
+                                        <i class="icon-user"></i> Profile </a>
+                                </li>--%>
+                                <li>
+                                    <a href="login.html">
+                                       <asp:Button Text="Log Out" runat="server" CssClass="list-group-item" ID="btnlogin" OnClick="btnlogin_Click" /></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- end manage user dropdown -->
+                        <li class="dropdown dropdown-quick-sidebar-toggler">
+                             <a id="headerSettingButton" class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton">
+	                           <i class="material-icons">more_vert</i>
+	                        </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- end header -->
+        <!-- start color quick setting -->
+     <%--   <div class="quick-setting-main">
+			<button class="control-sidebar-btn btn" data-toggle="control-sidebar"><i class="fa fa-cog fa-spin"></i></button>
+			<div class="quick-setting display-none">
+				<ul id="themecolors" >
+				<li><p class="selector-title">Main Layouts</p></li>
+				<li class="complete"><div class="theme-color layout-theme">
+				<a href="#" data-theme="light"><span class="head"></span><span class="cont"></span></a>
+				<a href="http://radixtouch.in/templates/admin/smart/source/dark/index.html" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
+				</div></li>	
+				<li><p class="selector-title">Sidebar Color</p></li>
+				<li class="complete"><div class="theme-color sidebar-theme">
+				<a href="#" data-theme="white"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="blue"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="indigo"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="cyan"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="green"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="red"><span class="head"></span><span class="cont"></span></a>
+				</div></li>
+             	<li><p class="selector-title">Header Brand color</p></li>
+             	<li class="theme-option"><div class="theme-color logo-theme">
+             	<a href="#" data-theme="logo-white"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="logo-dark"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="logo-blue"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="logo-indigo"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="logo-cyan"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="logo-green"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="logo-red"><span class="head"></span><span class="cont"></span></a>
+             	</div></li>
+             	<li><p class="selector-title">Header color</p></li>
+             	<li class="theme-option"><div class="theme-color header-theme">
+             	<a href="#" data-theme="header-white"><span class="head"></span><span class="cont"></span></a>
+             	<a href="#" data-theme="header-dark"><span class="head"></span><span class="cont"></span></a>
+             	<a href="#" data-theme="header-blue"><span class="head"></span><span class="cont"></span></a>
+             	<a href="#" data-theme="header-indigo"><span class="head"></span><span class="cont"></span></a>
+             	<a href="#" data-theme="header-cyan"><span class="head"></span><span class="cont"></span></a>
+             	<a href="#" data-theme="header-green"><span class="head"></span><span class="cont"></span></a>
+             	<a href="#" data-theme="header-red"><span class="head"></span><span class="cont"></span></a>
+             	</div></li>
+			</ul>
+			</div>
+		</div>--%>
+		<!-- end color quick setting -->
+        <!-- start page container -->
+        <div class="page-container">
+ 			<!-- start sidebar menu -->
+ 			<div class="sidebar-container">
+ 				<div class="sidemenu-container navbar-collapse collapse fixed-menu">
+	                <div id="remove-scroll" class="left-sidemenu">
+	                    <ul class="sidemenu  page-header-fixed slimscroll-style" runat="server" id="MenuPanel" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+	                     </ul>	                    
+	                </div>
+                </div>
+            </div>
+            <!-- end sidebar menu --> 
+
+            	<!-- start page content -->
+            <div class="page-content-wrapper">
+                <div class="page-content">
+<%--                    <div class="page-bar">
+                        <div class="page-title-breadcrumb">
+                            <div class=" pull-left">
+                                <div class="page-title"><%: Title %></div>
+                            </div>
+                            <ol class="breadcrumb page-breadcrumb pull-right">
+                                <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                </li>
+                                <li class="active">Dashboard</li>
+                            </ol>
+                        </div>
+                    </div>--%>
+                            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                             </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <!-- end page content -->
+        
+        </div>
+   
+             </div>
+        <!-- end page container -->
+        <!-- start footer -->
+        <div class="page-footer">
+            <div class="page-footer-inner"> 2019 &copy; Edo State Examination Registration portal </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- end footer -->
+      
+        </form>
+    <!-- start js include path -->
+    <!-- bootstrap -->
+    <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/bootstrap/js/bootstrap.min.js" )%>' ></script>
+    <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" )%>' ></script>
+    <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/sparkline/jquery.sparkline.js" ) %>' ></script>
+	<script src='<%=Page.ResolveUrl("~/Content/assets/js/pages/sparkline/sparkline-data.js" ) %>' ></script>
+    <!-- Common js-->
+	<script src='<%=Page.ResolveUrl("~/Content/assets/js/app.js" ) %>' ></script>
+    <script src='<%=Page.ResolveUrl("~/Content/assets/js/layout.js" ) %>' ></script>
+    <script src='<%=Page.ResolveUrl("~/Content/assets/js/theme-color.js" ) %>' ></script>
+
+    <!-- chart js -->
+    <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/chart-js/Chart.bundle.js" ) %>' ></script>
+    <script src='<%= Page.ResolveUrl("~/Content/assets/plugins/chart-js/utils.js" ) %>' ></script>
+    <script type="text/javascript"  src='<%= Page.ResolveUrl("~/Content/assets/js/pages/chart/chartjs/home-data.js" ) %>'></script>
+    <!-- summernote -->
+    <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/summernote/summernote.js" ) %>'></script>
+    <script src= '<%=Page.ResolveUrl("~/Content/assets/js/pages/summernote/summernote-data.js")%>' ></script>
+      
+    <!-- end js include path -->
+</body>
+</html>
