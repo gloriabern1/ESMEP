@@ -77,7 +77,7 @@
                                             AutoGenerateColumns="false" runat="server">
 
                                             <Columns> 
-                                                <asp:TemplateField>
+                                                <asp:TemplateField Visible="false">
                                                         <ItemTemplate>                  
                                                             <asp:Label ID="lblStudentId" runat="server"  Text='<%# Bind("ID") %>' Visible="false"/>
                                                         </ItemTemplate>
@@ -93,13 +93,17 @@
                                                 </asp:BoundField>       
                                                 <asp:BoundField  DataField="students" HeaderText="#. Student Registered">
                                                 </asp:BoundField>  
-                                                <asp:BoundField  DataField="Status" HeaderText="Status">
-                                                </asp:BoundField>                                                                                                       
-                                                <asp:TemplateField HeaderText="Select">
+                                                <asp:TemplateField HeaderText="Status">
+                                                        <ItemTemplate>                  
+                                                            <asp:Label ID="lblStatus" runat="server"  Text='<%# Bind("Status") %>'/>
+                                                        </ItemTemplate>
+                                                    <ItemStyle/>
+                                                </asp:TemplateField>
+                                            <%--    <asp:TemplateField HeaderText="Select">
                                                         <ItemTemplate>  
                                                         </ItemTemplate>
                                                         <ItemStyle Width="20px" />
-                                                    </asp:TemplateField>
+                                                    </asp:TemplateField>--%>
                                                 </Columns>
                                         </asp:GridView>
 
@@ -109,69 +113,12 @@
 					    </div>
 					</div>
                 </div>
-<%--                <div class="tab-pane" id="tab2">
-                    <div class="row">
-					    <div class="col-md-4">
-				            <div class="card card-box">
-				                <div class="card-body no-padding ">
-				                    <div class="doctor-profile">
-				                            <img src="../assets/img/std/std10.jpg" class="doctor-pic" alt=""> 
-					                    <div class="profile-usertitle">
-					                        <div class="doctor-name">Pooja Patel </div>
-					                        <div class="name-center"> Science </div>
-					                    </div>
-				                            <p>A-103, shyam gokul flats, Mahatma Road <br />Mumbai</p> 
-				                            <div><p><i class="fa fa-phone"></i><a href="tel:(123)456-7890">  (123)456-7890</a></p> </div>
-					                    <div class="profile-userbuttons">
-					                        <a href="professor_profile.html" class="btn btn-circle deepPink-bgcolor btn-sm">Read More</a>
-					                    </div>
-				                    </div>
-				                </div>
-				            </div>
-					    </div>
-					    <div class="col-md-4">
-				            <div class="card card-box">
-				                <div class="card-body no-padding ">
-				                    <div class="doctor-profile">
-				                            <img src="../assets/img/std/std1.jpg" class="doctor-pic" alt=""> 
-					                    <div class="profile-usertitle">
-					                        <div class="doctor-name">Rajesh </div>
-					                        <div class="name-center"> Mathematics </div>
-					                    </div>
-				                            <p>45, Krishna Tower, Near Bus Stop, Satellite, <br />Mumbai</p> 
-				                            <div><p><i class="fa fa-phone"></i><a href="tel:(123)456-7890">  (123)456-7890</a></p> </div>
-					                    <div class="profile-userbuttons">
-					                            <a href="professor_profile.html" class="btn btn-circle deepPink-bgcolor btn-sm">Read More</a>
-					                    </div>
-				                    </div>
-				                </div>
-				            </div>
-					    </div>
-					    <div class="col-md-4">
-				            <div class="card card-box">
-				                <div class="card-body no-padding ">
-				                    <div class="doctor-profile">
-				                            <img src="../assets/img/std/std2.jpg" class="doctor-pic" alt=""> 
-					                    <div class="profile-usertitle">
-					                        <div class="doctor-name">Sarah Smith </div>
-					                        <div class="name-center"> Commerce </div>
-					                    </div>
-				                            <p>456, Estern evenue, Courtage area, <br />New York</p> 
-				                            <div><p><i class="fa fa-phone"></i><a href="tel:(123)456-7890">  (123)456-7890</a></p> </div>
-					                    <div class="profile-userbuttons">
-					                            <a href="professor_profile.html" class="btn btn-circle deepPink-bgcolor btn-sm">Read More</a>
-					                    </div>
-				                    </div>
-				                </div>
-				            </div>
-					    </div>
-                    </div>                    
-                </div>--%>
             </div>
         </div>
     </div>
 </div>
-                  <!-- data tables -->
+    </div>    
+    <!-- data tables -->
     <script src="../../Content/assets/plugins/datatables/jquery.dataTables.min.js" ></script>
  	<script src="../../Content/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js" ></script>
     <script src="../../Content/assets/js/pages/table/table_data.js" ></script>

@@ -57,5 +57,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Models
         public virtual ICollection<ExaminationRegistered> ExaminationRegistereds { get; set; }
 
         public virtual LocalGovernment LocalGovernment { get; set; }
+
+        public virtual SchoolType SchoolType { get; set; }
     }
 }

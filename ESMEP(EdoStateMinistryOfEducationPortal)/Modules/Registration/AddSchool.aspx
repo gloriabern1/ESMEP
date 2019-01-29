@@ -82,7 +82,7 @@
 				</div>
 
                 <div class="col-lg-4 p-t-20"> 
-                  <label class = "" >Title</label>
+                  <label class = "" >Select Title</label>
 					<div class="mdl-textfield mdl-js-textfield getmdl-select getmdl-select__fix-height select-width">
                         <asp:DropDownList runat="server" ID="ddlTitle" CssClass="form-control" ></asp:DropDownList>
 					</div>
@@ -97,7 +97,7 @@
 				</div>                               
 
                 <div class="col-lg-4 p-t-20"> 
-                  <label class = "" >Category</label>
+                  <label class = "" >Select Category</label>
 					<div class="mdl-textfield mdl-js-textfield getmdl-select getmdl-select__fix-height select-width">
                         <asp:DropDownList runat="server" ID="ddlSchoolCat" CssClass="form-control" ></asp:DropDownList>
 					</div>

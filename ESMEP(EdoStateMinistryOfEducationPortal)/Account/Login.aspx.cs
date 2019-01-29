@@ -3,14 +3,18 @@ using System.Web;
 using System.Web.UI;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using System.Linq;
 using Owin;
 using ESMEP_EdoStateMinistryOfEducationPortal_.Models;
 using System.Collections.Generic;
+using ESMEP_EdoStateMinistryOfEducationPortal_.ViewModels;
+using ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure;
 
 namespace ESMEP_EdoStateMinistryOfEducationPortal_.Account
 {
     public partial class Login : Page
     {
+        private UnitOfWork unitOfWork = new UnitOfWork();
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register";
@@ -50,20 +54,21 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Account
                 // This doen't count login failures towards account lockout
                 // To enable password failures to trigger lockout, change to shouldLockout: true
                 var result = signinManager.PasswordSignIn(txtEmail.Value, txtPassword.Value, chkRememberMe.Checked, shouldLockout: false);
-
+     
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        IList<String> roles = null;
-                        //try
-                        //{
-                            var user =  signinManager.AuthenticationManager.AuthenticationResponseGrant.Identity;
-                            //string userId = User.Identity.GetUserId();
+                        IList<string> roles = null;
+                        var user =  signinManager.AuthenticationManager.AuthenticationResponseGrant.Identity;
                             string userId = user.GetUserId();   
                             roles = manager.GetRoles(userId);
-                            //var user = manager.FindById(userId);
-                            Session.Add("Name", user.GetUserName().ToString());
-                            Session.Add("UserId", userId);
+                        SessionObject sessionObject = new SessionObject
+                        {
+                            UserId = userId,
+                            Name = user.GetUserName()
+                        };
+                        //Session.Add("Name", user.GetUserName().ToString());
+                        //    Session.Add("UserId", userId);
 
                             foreach (var item in roles)
                             {                              
@@ -75,13 +80,25 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Account
                                 }
                                 else if (item.Contains("School"))
                                 {
-                                    //IdentityHelper.RedirectToReturnUrl("~/Modules/School/AllStudentBySchool", Response);
-                                    Response.Redirect("~/Modules/School/AllStudentBySchool");
+                                //IdentityHelper.RedirectToReturnUrl("~/Modules/School/AllStudentBySchool", Response);
 
+                                    var school = unitOfWork.School.Get(x => x.UserId == userId).FirstOrDefault();
+                                    if(school != null)
+                                    {
+                                        sessionObject.CategoryId = school.CategoryId.Value;
+                                        sessionObject.SchoolId = school.Id;
+                                        sessionObject.SchoolType = school.SchoolTypeId;
+                                        sessionObject.LgaId = school.LocalGovernmentID;
+                                    }
+                                Session["EdoSessionObject"] = sessionObject;
+                                Response.Redirect("~/Modules/School/AllStudentBySchool");
+                                }
+                                else if (item.Contains("Inspector"))
+                                {
+                                    Response.Redirect("~/Modules/Inspectors/InspectorSchools");
                                 }
                                 else
                                 {
-                                    //IdentityHelper.RedirectToReturnUrl("~/Modules/Home", Response);
                                     Session.Add("Name", "Admin@example.com");
                                     Session.Add("UserId", "1031be11-7a40-499f-9f60-69a0d0d37bc0");
                                     Response.Redirect("~/Modules/Home");
@@ -89,11 +106,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Account
                                 }
                             }
 
-                        //}
-                        //catch (Exception ex)
-                        //{
-                        //    IdentityHelper.RedirectToReturnUrl("~/Modules/Home", Response);                            
-                        //}
+                        Session["EdoSessionObject"] = sessionObject;
                         break;
                     case SignInStatus.LockedOut:
                         Response.Redirect("/Account/Lockout");

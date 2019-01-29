@@ -38,4 +38,32 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.ViewModels
         public string Icons { get; set; }
 
     }
+
+    public class InspectorViewModel
+    {
+        public int Id { get; set; }
+        public int LgaId  { get; set; }
+        public string Name { get; set; }
+        public string LocalGovtName { get; set; }
+        public string Email { get; set; }        
+    }
+
+    public class UserViewModel
+    {
+        public string FullName { get; set; }
+        public string Email { get; set; }
+        public int LgaId { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+
+    }
+    public class SessionObject
+    {
+        public int SchoolId { get; set; }
+        public int LgaId { get; set; }
+        public int CategoryId { get; set; }
+        public int SchoolType { get; set; }
+        public string UserId { get; set; }
+        public string Name { get; set; }
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers;
+using ESMEP_EdoStateMinistryOfEducationPortal_.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Controller
     public class SchoolController : ApiController
     {
         DropDownManager dropDownManager = new DropDownManager();
+        InspectorServices inspectorServices = new InspectorServices();
 
         // GET api/<controller>
         [Route("api/StudentPersonalDatas/GetAllSchool")]
@@ -25,6 +27,12 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Controller
         //{
         //    return "value";
         //}
+        [Route("api/School/AllInspector")]
+        [HttpGet]
+        public IHttpActionResult AllInspector()
+        {
+            return Ok(inspectorServices.GetLgaInspector());
+        }
 
         // POST api/<controller>
         public void Post([FromBody]string value)

@@ -15,8 +15,9 @@
                                 </li>
                                 <li class="active">School Details</li>
                             </ol>
-                        </div>s
+                        </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <!-- BEGIN PROFILE SIDEBAR -->

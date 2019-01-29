@@ -49,6 +49,19 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
 
                 gvSchools.DataSource = dt;
                 gvSchools.DataBind();
+
+                foreach (GridViewRow row in gvSchools.Rows)
+                {
+                    Label lblStatus = (Label)row.FindControl("lblStatus");
+                    if(lblStatus.Text == "Registered")
+                    {
+                        lblStatus.CssClass = "btn btn-success";
+                    }
+                    else
+                    {
+                        lblStatus.CssClass = "btn btn-danger";
+                    }
+                }
             }
 
         }

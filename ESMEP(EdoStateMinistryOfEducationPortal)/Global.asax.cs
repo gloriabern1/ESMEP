@@ -16,8 +16,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_
         {
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            BundleConfig.RegisterBundles(BundleTable.Bundles);            
             RouteTable.Routes.MapHttpRoute(
             name: "DefaultApi",
             routeTemplate: "api/{controller}/{id}",

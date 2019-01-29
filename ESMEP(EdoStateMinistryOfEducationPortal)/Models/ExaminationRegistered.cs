@@ -13,6 +13,8 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Models
 
         public int SchoolId { get; set; }
 
+        public string SchoolCode { get; set; }
+
         public int StudentId { get; set; }
 
         public int ExamId { get; set; }
@@ -42,8 +44,12 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Models
 
         public bool? Status { get; set; }
 
-        public DateTime DateRegistered { get; set; }
+        public bool? Attendance { get; set; }
 
+        public string Remarks { get; set; }
+
+        public DateTime DateRegistered { get; set; }
+           
         public bool? IsProcessed { get; set; }
 
         [StringLength(50)]

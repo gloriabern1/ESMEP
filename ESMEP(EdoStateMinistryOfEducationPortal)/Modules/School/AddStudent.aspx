@@ -81,29 +81,7 @@
                     <div class="col-lg-4 p-t-20"> 
                       <label class = "" >Select Gender</label>
                         <asp:DropDownList runat="server" ID="ddlSex" CssClass="form-control" ></asp:DropDownList>
-                   </div>
-
-
-<%--                   <div class="col-lg-4 p-t-20"> 
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
-							<input class="mdl-textfield__input" type="text" id="sample2" value="" readonly tabIndex="-1">
-							<label for="sample2" class="pull-right margin-0">
-								<i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-							</label>
-							<label for="sample2" class="mdl-textfield__label">Gender</label>
-							<ul data-mdl-for="sample2" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-								<li class="mdl-menu__item" data-val="DE">Male</li>
-								<li class="mdl-menu__item" data-val="BY">Female</li>
-							</ul>
-						</div>
-			    </div>	        
-                    
-					<div class="col-lg-4 p-t-20"> 
-						<div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-width">
-						    <input class = "mdl-textfield__input" type = "text" id = "txtPrincipal" runat="server">
-						    <label class = "mdl-textfield__label" for = "text4"></label>
-						</div>
-					</div>	     --%>      							                          											
+                   </div>   							                          											
 				</div>
 			</div>
 		</div>

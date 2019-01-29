@@ -70,7 +70,7 @@
                                     <asp:GridView ID="gvSchool" CssClass="table table-striped table-bordered table-hover table-checkable order-column valign-middle" OnRowCommand="gvSchool_RowCommand"
                                         AutoGenerateColumns="false" runat="server">
                                         <Columns>
-                                            <asp:TemplateField>
+                                            <asp:TemplateField Visible="false">
                                                     <ItemTemplate>                  
                                                         <asp:Label ID="lblExamId" runat="server"  Text='<%# Bind("ID") %>' Visible="false"/>
                                                     </ItemTemplate>
@@ -103,7 +103,7 @@
                              </div>
                          </div>
                     </div>
-
+                </div>
         <!-- data tables -->
     <script src="../../Content/assets/plugins/datatables/jquery.dataTables.min.js" ></script>
  	<script src="../../Content/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js" ></script>

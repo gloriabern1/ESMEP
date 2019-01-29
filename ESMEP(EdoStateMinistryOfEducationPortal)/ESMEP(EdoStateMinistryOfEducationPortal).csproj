@@ -538,7 +538,9 @@
     <None Include="Properties\PublishProfiles\EdoStateMinistryofEducationPortal - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Modules\Home.aspx" />
-    <Content Include="Modules\Inspectors\LgaInspector.aspx" />
+    <Content Include="Modules\Inspectors\AddInspectorToLga.aspx" />
+    <Content Include="Modules\Inspectors\AllInspectors.aspx" />
+    <Content Include="Modules\Inspectors\InspectorSchools.aspx" />
     <Content Include="Modules\Registration\AddSchool.aspx" />
     <Content Include="Modules\Report\RegisteredSchool.aspx" />
     <Content Include="Modules\Report\RegisteredStudent.aspx" />
@@ -547,9 +549,13 @@
     <Content Include="Modules\School\AllSchool.aspx" />
     <Content Include="Modules\School\AllStudentBySchool.aspx" />
     <Content Include="Modules\School\AllStudents.aspx" />
+    <Content Include="Modules\School\DownloadAttachments.aspx" />
+    <Content Include="Modules\School\DownloadEntrySchedule.aspx" />
     <Content Include="Modules\School\RegisterStudent.aspx" />
     <Content Include="Modules\Registration\UploadSchool.aspx" />
     <Content Include="Modules\School\AboutSchool.aspx" />
+    <Content Include="Modules\School\UploadAttendance.aspx" />
+    <Content Include="Modules\School\UploadStudent.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -558,7 +564,9 @@
     <Content Include="Scripts\Pages\AllSchool.js" />
     <Content Include="Scripts\Pages\AllStudent.js" />
     <Content Include="Scripts\Pages\DataTableInitialization.js" />
+    <Content Include="Scripts\Pages\Inspector\Inspector.js" />
     <Content Include="Scripts\Pages\RegisterStudent.js" />
+    <Content Include="Scripts\Pages\sweetalert.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
@@ -583,6 +591,8 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="sweetalert2.min.css" />
+    <Content Include="sweetalert2.min.js" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -723,6 +733,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ExcelPlus.cs" />
+    <Compile Include="Infrastructure\Handler\UserHandler.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Infrastructure\Managers\DropDownManager.cs" />
     <Compile Include="Infrastructure\Managers\StaticsManager.cs" />
     <Compile Include="Models\AspNetRole.cs" />
@@ -757,12 +770,26 @@
     <Compile Include="Modules\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Inspectors\LgaInspector.aspx.cs">
-      <DependentUpon>LgaInspector.aspx</DependentUpon>
+    <Compile Include="Modules\Inspectors\AddInspectorToLga.aspx.cs">
+      <DependentUpon>AddInspectorToLga.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Modules\Inspectors\LgaInspector.aspx.designer.cs">
-      <DependentUpon>LgaInspector.aspx</DependentUpon>
+    <Compile Include="Modules\Inspectors\AddInspectorToLga.aspx.designer.cs">
+      <DependentUpon>AddInspectorToLga.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Inspectors\AllInspectors.aspx.cs">
+      <DependentUpon>AllInspectors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Inspectors\AllInspectors.aspx.designer.cs">
+      <DependentUpon>AllInspectors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Inspectors\InspectorSchools.aspx.cs">
+      <DependentUpon>InspectorSchools.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Inspectors\InspectorSchools.aspx.designer.cs">
+      <DependentUpon>InspectorSchools.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modules\Registration\AddSchool.aspx.cs">
       <DependentUpon>AddSchool.aspx</DependentUpon>
@@ -820,6 +847,20 @@
     <Compile Include="Modules\School\AllStudents.aspx.designer.cs">
       <DependentUpon>AllStudents.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Modules\School\DownloadAttachments.aspx.cs">
+      <DependentUpon>DownloadAttachments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\DownloadAttachments.aspx.designer.cs">
+      <DependentUpon>DownloadAttachments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\School\DownloadEntrySchedule.aspx.cs">
+      <DependentUpon>DownloadEntrySchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\DownloadEntrySchedule.aspx.designer.cs">
+      <DependentUpon>DownloadEntrySchedule.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Modules\School\RegisterStudent.aspx.cs">
       <DependentUpon>RegisterStudent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -841,7 +882,22 @@
     <Compile Include="Modules\School\AboutSchool.aspx.designer.cs">
       <DependentUpon>AboutSchool.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Modules\School\UploadAttendance.aspx.cs">
+      <DependentUpon>UploadAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\UploadAttendance.aspx.designer.cs">
+      <DependentUpon>UploadAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\School\UploadStudent.aspx.cs">
+      <DependentUpon>UploadStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\UploadStudent.aspx.designer.cs">
+      <DependentUpon>UploadStudent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\InspectorServices.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -875,6 +931,7 @@
     <Folder Include="Content\css\" />
     <Folder Include="Static Content\Documents\" />
     <Folder Include="Static Content\Logos\" />
+    <Folder Include="Static Content\Payments\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -901,7 +958,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>22838</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:22838/</IISUrl>
+          <IISUrl>http://localhost:22840/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

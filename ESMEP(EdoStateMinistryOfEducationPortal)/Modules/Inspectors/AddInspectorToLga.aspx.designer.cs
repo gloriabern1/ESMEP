@@ -11,7 +11,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Inspectors
 {
 
 
-    public partial class LgaInspector
+    public partial class AddInspectorToLga
     {
     }
 }

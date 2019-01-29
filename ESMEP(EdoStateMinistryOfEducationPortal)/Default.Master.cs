@@ -2,18 +2,13 @@
 using System;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Owin;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Security;
 using ESMEP_EdoStateMinistryOfEducationPortal_.Models;
 using ESMEP_EdoStateMinistryOfEducationPortal_.ViewModels;
 
@@ -27,32 +22,39 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_
         {
             if (!Page.IsPostBack)
             {
-                if (HttpContext.Current.User.Identity != null)
+                try
                 {
-                    if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    if (HttpContext.Current.User.Identity != null)
                     {
-                        var loggedUser = Session["Name"].ToString();
-                        if (!string.IsNullOrEmpty(loggedUser))
+                        if (HttpContext.Current.User.Identity.IsAuthenticated)
                         {
-                            lblUsername.Text = loggedUser;
+                            var sessionUser = (SessionObject)Session["EdoSessionObject"];
+                            if (!string.IsNullOrEmpty(sessionUser.Name))
+                            {
+                                lblUsername.Text = sessionUser.Name;
+                            }
+                            else
+                            {
+                                sessionUser.Name = HttpContext.Current.User.Identity.GetUserName();
+                            }
+                            LoadMenu(sessionUser.Name, sessionUser.UserId);
                         }
-                        else
-                        {
-                            loggedUser = HttpContext.Current.User.Identity.GetUserName();
-                        }
-                        LoadMenu(loggedUser);
                     }
+                    else
+                    {
+                        Response.Redirect("~/Account/Login");
+                    }
+                    
                 }
-                else
+                catch (Exception)
                 {
                     Response.Redirect("~/Account/Login");
                 }
-
             }
 
 
         }
-        public void LoadMenu(string userName)
+        public void LoadMenu(string userName, string userId)
         {          
             StringBuilder str = new StringBuilder();
             string Dashboardurl = Page.ResolveClientUrl("~/Modules/Home");
@@ -64,18 +66,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_
 	                                    </div></div></li>
                                 <li class=""nav- item""><a runat=""server"" href=""{1}"" class=""nav-link""><i class=""material-icons"">dashboard</i><span class=""title"">Dashboard</span></a>
 	                           </li>", userName.Substring(0,5), Dashboardurl));
-            string userId = string.Empty;
-
-            try
-            {
-                userId = Session["UserId"].ToString() ?? HttpContext.Current.User.Identity.GetUserId() ;
-              
-                //var Role = Roles.GetRolesForUser(userId);
-            }
-            catch (Exception)
-            {
-                userId = "1031be11-7a40-499f-9f60-69a0d0d37bc0";                
-            }
+            
             
             var usersWithRoles = (from user in db.Users
                                   select new
@@ -98,9 +89,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_
             string url = "";
 
             IList<MenuViewModel> MenuList = new List<MenuViewModel>();
-            IList<MenuMainViewModel> MainMenuList = new List<MenuMainViewModel>();
-            MenuMainViewModel AllMainMenus = null;
-            MenuViewModel Meuns = null;
+            IList<MenuMainViewModel> MainMenuList = new List<MenuMainViewModel>();           
 
             foreach (var item in usersWithRoles)
             {
@@ -110,7 +99,8 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_
                     //   var mainmenu = menu.Where(x => x.MenuSub.MenuMain)
                     foreach (var item1 in menu)
                     {
-                         AllMainMenus = new MenuMainViewModel();
+                        MenuMainViewModel AllMainMenus = new MenuMainViewModel();
+                        MenuViewModel Meuns = new MenuViewModel();
 
                         if (MainMenuList.Count() == 0)
                         {
@@ -119,23 +109,22 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_
                             AllMainMenus.Icons = item1.MenuSub.MenuMain.ICONS;
                             MainMenuList.Add(AllMainMenus);
                         }
-                        else if (MainMenuList.Any(x => x.Id != item1.MenuSub.MenuMainId))
+                        else if (MainMenuList.All(x => x.Id != item1.MenuSub.MenuMainId))
                         {
                             AllMainMenus.Id = item1.MenuSub.MenuMainId;
                             AllMainMenus.MenuName = item1.MenuSub.MenuMain.Name;
                             AllMainMenus.Icons = item1.MenuSub.MenuMain.ICONS;
                             MainMenuList.Add(AllMainMenus);
-                        }
-                        Meuns = new MenuViewModel();
-                        Meuns.RoleId = item1.RoleId.ToString();
-                        Meuns.MenuId = item1.MenuSubId;
-                        Meuns.MenuTitle = item1.MenuSub.MenuTitle;
-                        url = Page.ResolveClientUrl("" + item1.MenuSub.URL + "");
-                        Meuns.URL = url;
-                        Meuns.MAIN_MENU = item1.MenuSub.MenuMain.Name;
-                        Meuns.ICONS = item1.MenuSub.MenuMain.ICONS;
-                        Meuns.MainMenuId = item1.MenuSub.MenuMainId;
-                        MenuList.Add(Meuns);
+                        }                  
+                            Meuns.RoleId = item1.RoleId.ToString();
+                            Meuns.MenuId = item1.MenuSubId;
+                            Meuns.MenuTitle = item1.MenuSub.MenuTitle;
+                            url = Page.ResolveClientUrl("" + item1.MenuSub.URL + "");
+                            Meuns.URL = url;
+                            Meuns.MAIN_MENU = item1.MenuSub.MenuMain.Name;
+                            Meuns.ICONS = item1.MenuSub.MenuMain.ICONS;
+                            Meuns.MainMenuId = item1.MenuSub.MenuMainId;
+                            MenuList.Add(Meuns);                                             
                     }
                 }
                    

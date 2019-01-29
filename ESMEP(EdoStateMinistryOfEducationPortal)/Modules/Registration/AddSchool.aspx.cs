@@ -58,7 +58,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Registration
                         Address = txtAddress.Value,
                         Email = txtEmail.Value,
                         MobileNo = Convert.ToDecimal(txtMobileNo.Value),
-                        NameOfPrincipal = ddlTitle.Text + " " + txtPrincipal.Value,
+                        NameOfPrincipal = ddlTitle.SelectedItem.Text + " " + txtPrincipal.Value,
                         DateOfIncorporation = Convert.ToDateTime(txtdate.Value),
                         SchoolTypeId = selectedRadio,
                         CategoryId = int.Parse(ddlSchoolCat.SelectedValue),
@@ -69,10 +69,10 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Registration
                     };
                     unitOfWork.School.Insert(school);
                     unitOfWork.Save();
-                    signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
+                    //signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
                     dropDownManager.ShowPopUp("School Added Successfully !!!");
                     //IdentityHelper.RedirectToReturnUrl("Registration/School", Response);
-
+                    ClearInput();
                 }
                 else
                 {
@@ -134,6 +134,20 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Registration
                 return false;
             }
             return true;
+        }
+
+        void ClearInput()
+        {
+            txtAddress.Value = "";
+            txtEmail.Value = "";
+            txtname.Value = "";
+            txtPrincipal.Value = "";
+            txtdate.Value = "";
+            txtMobileNo.Value = "";
+            ddlLGA.SelectedIndex = 0;
+            ddlSchoolCat.SelectedIndex = 0;
+            ddlTitle.SelectedIndex = 0;
+            radPublic.Checked = true;
         }
     }
 }

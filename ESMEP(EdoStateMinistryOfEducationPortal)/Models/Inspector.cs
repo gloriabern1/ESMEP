@@ -8,7 +8,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Models
 
     public partial class Inspector
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]
