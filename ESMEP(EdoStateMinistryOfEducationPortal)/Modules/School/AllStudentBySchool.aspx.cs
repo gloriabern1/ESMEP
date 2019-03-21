@@ -12,8 +12,6 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
 {
     public partial class AllStudentBySchool : System.Web.UI.Page
     {
-        DropDownManager dropDownManager = new DropDownManager();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -27,7 +25,6 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
         protected void gvStudent_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string id = e.CommandArgument.ToString();
-
         }
 
         public void LoadAllStudent(string schoolId)
@@ -41,7 +38,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             dt.Columns.Add("Date");
             dt.Columns.Add("State");
 
-            var student = dropDownManager.GetAllStudents(schoolId);
+            var student = DropDownManager.GetAllStudents(schoolId);
             if (student != null)
             {
                 int sn = 0;
@@ -62,6 +59,8 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
 
                 tblGeneral.DataSource = dt;
                 tblGeneral.DataBind();
+                tblGeneral.HeaderRow.TableSection = TableRowSection.TableHeader;
+
             }
 
         }
@@ -71,7 +70,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             string userId = HttpContext.Current.User.Identity.GetUserId();
             if(userId != null)
             {
-               var schoolId = dropDownManager.GetSchoolId(userId);
+               var schoolId = DropDownManager.GetSchoolId(userId);
                 return schoolId.ToString();
             }
             else

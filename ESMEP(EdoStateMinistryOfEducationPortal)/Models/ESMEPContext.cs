@@ -34,6 +34,11 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Models
         public virtual DbSet<StudentGuardianDetial> StudentGuardianDetials { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Title> Titles { get; set; }
+        public virtual DbSet<SchoolQuota> SchoolQuotas { get; set; }
+        public virtual DbSet<SchoolApproval> SchoolApproval { get; set; }
+        public virtual DbSet<ApprovalReceipt> ApprovalReceipt { get; set; }
+
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -328,6 +333,8 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Models
             modelBuilder.Entity<Title>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
+
+     
         }
     }
 }

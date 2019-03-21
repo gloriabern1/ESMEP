@@ -11,7 +11,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Report
 {
     public partial class RegisteredStudent : System.Web.UI.Page
     {
-        DropDownManager dropDownManager = new DropDownManager();
+        //DropDownManager dropDownManager = new DropDownManager();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,7 +34,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Report
             dt.Columns.Add("EXAMID");
 
 
-            var Exams = dropDownManager.GetRegisteredStudents();
+            var Exams = DropDownManager.GetRegisteredStudents();
             int sn = 0;
             foreach (var item in Exams)
             {
@@ -59,7 +59,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Report
             string StudentId = Ids[1];
             string schoolId = Ids[2];
 
-            dropDownManager.ShowPopUp(ExamId + " "+ StudentId + " "+ schoolId);
+            DropDownManager.ShowPopUp(ExamId + " "+ StudentId + " "+ schoolId);
 
         }
     }

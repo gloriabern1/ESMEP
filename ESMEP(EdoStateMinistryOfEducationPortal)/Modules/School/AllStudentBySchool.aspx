@@ -102,5 +102,11 @@
                 </div>
             </div>
     </div>
+
+      <script type="text/javascript">  
+    $(document).ready(function () {  
+        $('#<%=tblGeneral.ClientID%>').DataTable();  
+    });  
+</script>  
     <script src="../../Scripts/Pages/DataTableInitialization.js"></script>
 </asp:Content>

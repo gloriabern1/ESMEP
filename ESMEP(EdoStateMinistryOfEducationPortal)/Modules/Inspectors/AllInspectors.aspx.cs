@@ -15,7 +15,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Inspectors
     public partial class LgaInspector : System.Web.UI.Page
     {
         InspectorServices inspectorServices = new InspectorServices();
-        DropDownManager dropDownManager = new DropDownManager();
+        //DropDownManager dropDownManager = new DropDownManager();
 
         //public LgaInspector(InspectorServices inspectorServicesParam)
         //{
@@ -26,7 +26,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Inspectors
         {
             if (!IsPostBack)
             {
-                dropDownManager.GetTitle(ddlTitle);
+                DropDownManager.GetTitle(ddlTitle);
                 loadTable();
             }
         }
@@ -41,6 +41,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Inspectors
             var dt = AllInspector();
             gvInspector.DataSource = dt;
             gvInspector.DataBind();
+            gvInspector.HeaderRow.TableSection = TableRowSection.TableHeader;
 
             foreach (GridViewRow row in gvInspector.Rows)
             {
@@ -72,9 +73,10 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Inspectors
             string command = e.CommandName.ToString();
             string lgaId = e.CommandArgument.ToString();
             lblLgaId.Text = lgaId;
-            if (command == "doview")
+            if (command == "doView")
             {
-                Multiview1.ActiveViewIndex = 0;
+                PopulateInspector(lgaId);
+                Multiview1.ActiveViewIndex = 2;
             }
             else
             {
@@ -147,6 +149,28 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Inspectors
                 return false;
             }
             return true;
+        }
+
+        public void PopulateInspector(string id)
+        {
+            int lgaId = 0;
+            int.TryParse(id, out lgaId);
+            var inspector = inspectorServices.GetInspector(lgaId);
+            if(inspector != null)
+            {
+                txtFirstName.Value = inspector.CIEName;
+                txtEmail.Value = inspector.Email;
+            }
+            else
+            {
+                Multiview1.ActiveViewIndex = 1;
+                DropDownManager.ShowPopUp("No Inspector for this local Government, Kindly Create One");
+            }
+        }
+
+        protected void btnBack2_Click(object sender, EventArgs e)
+        {
+            Multiview1.ActiveViewIndex = 0;
         }
     }
 }

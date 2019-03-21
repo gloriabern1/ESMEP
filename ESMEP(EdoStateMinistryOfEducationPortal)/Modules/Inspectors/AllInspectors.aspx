@@ -5,24 +5,24 @@
     <script src="../../sweetalert2.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-                       
-    <asp:MultiView ID="Multiview1" runat="server">
-
-        <asp:View runat="server" ID="View0">   
-               <div class="page-bar">
+    <div class="page-bar">
         <div class="page-title-breadcrumb">
             <div class=" pull-left">
-                <div class="page-title">All Inspector</div>
+                <div class="page-title"></div>
             </div>
             <ol class="breadcrumb page-breadcrumb pull-right">
                 <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="#">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                 </li>
                 <li><a class="parent-item" href="#">Inspector</a>&nbsp;<i class="fa fa-angle-right"></i>
                 </li>
-                <li class="active">Inspector List</li>
+                <li class="active">View Inspector</li>
             </ol>
         </div>
-    </div>
+    </div>       
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>    
+    <asp:MultiView ID="Multiview1" runat="server">
+  
+        <asp:View runat="server" ID="View0">   
 
         <div class="row">
           <div class="col-sm-12 col-md-12 col-xl-12">
@@ -31,7 +31,7 @@
 						<header>Inspectors</header>                        
 					</div>
 
-                   <div class="card-body ">
+<%--                   <div class="card-body ">
                     <div class="row">
                         <div class="col-md-12 col-sm-6 col-6 pull-right">
                             <div class="btn-group pull-right">
@@ -39,7 +39,7 @@
                                     Add New <i class="fa fa-plus"></i>
                                 </a>
                             </div>
-                        </div>
+                        </div>--%>
 
                             <div class="table-scrollable">
 
@@ -76,12 +76,11 @@
                             </div>
                     </div>
                     </div>
-         </div>
-       </div>
+        
         </asp:View>
 
         <asp:View runat="server" ID="View1">
-               <div class="page-bar">
+<%--      <div class="page-bar">
         <div class="page-title-breadcrumb">
             <div class=" pull-left">
                 <div class="page-title">ADD Chief Inspector</div>
@@ -92,7 +91,7 @@
                 <li class="active">Add Inspector</li>
             </ol>
         </div>
-    </div>
+    </div>--%>
 
     <div class="row">
 		<div class="col-sm-12">
@@ -112,11 +111,11 @@
                            </div>
                        <div class="form-group col-md-6 col-sm-6">
 	                        <label>First Name</label>
-	                        <input type="text" class="form-control" runat="server" id="txtFname" placeholder="Enter First Name" required="">
+	                        <input type="text" class="form-control" runat="server" id="txtFname" placeholder="Enter First Name">
 	                    </div>
                        <div class="form-group col-md-6 col-sm-6">
 	                        <label>Last Name</label>
-	                        <input type="text" class="form-control" runat="server" id="txtLname" placeholder="Enter Last Name" required="required">
+	                        <input type="text" class="form-control" runat="server" id="txtLname" placeholder="Enter Last Name">
 	                    </div>
                        <div class="form-group col-md-6 col-sm-6">
 	                        <label>Other Name</label>
@@ -153,6 +152,43 @@
        </div>
             <asp:Label Text="" ID="lblLgaId" Visible="false" runat="server" />
         </asp:View>
+
+        <asp:View runat="server" ID="View2">
+                <div class="row">
+		<div class="col-sm-12">
+			<div class="card-box">
+				<div class="card-head">
+					<header>Create Chief Inspector </header>
+				</div>
+				<div class="card-body" id="bar-parent3">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-6">
+                            <asp:Label ID="Label1" runat="server" CssClass="" ForeColor="Red"></asp:Label>
+                        </div>
+                       <div class="form-group col-md-6 col-sm-6">
+	                        <label>Full Name</label>
+	                        <input type="text" class="form-control" runat="server" id="txtFirstName"  disabled="disabled" readonly="readonly">
+	                    </div>
+                       
+                     <div class="form-group col-md-6 col-sm-6">
+                        <label for="username">Email address/Username</label>
+                        <input type="email" class="form-control" runat="server" id="txtEmail"  disabled="disabled" readonly="readonly">
+                    </div>
+
+                        <div style="clear:both" class="col-12">
+                            <div class="form-group" >
+                                <div class="">
+                                    <asp:Button Text="Back " ID="btnBack2" CssClass="btn btn-warning" OnClick="btnBack2_Click" runat="server" />
+                                </div>
+                            </div>
+                        </div>
+                 </div>
+				</div>
+               </div>           
+             </div>
+       </div>
+
+        </asp:View>
     </asp:MultiView>
 
         <script src="../../Content/assets/plugins/datatables/jquery.dataTables.min.js" ></script>
@@ -180,5 +216,9 @@
             )
         }
     </script>
-    
+        <script type="text/javascript">  
+    $(document).ready(function () {  
+        $('#<%=gvInspector.ClientID%>').DataTable();  
+    });  
+</script>  
 </asp:Content>

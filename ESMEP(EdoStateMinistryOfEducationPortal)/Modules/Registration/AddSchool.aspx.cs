@@ -1,6 +1,7 @@
 ﻿using ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure;
 using ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers;
 using ESMEP_EdoStateMinistryOfEducationPortal_.Models;
+using ESMEP_EdoStateMinistryOfEducationPortal_.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -15,16 +16,21 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Registration
     public partial class AddSchool : System.Web.UI.Page
     {
         UnitOfWork unitOfWork = new UnitOfWork();
-        DropDownManager dropDownManager = new DropDownManager();
-
+        public SessionObject sessionUser;
+        public SessionObject SessionUser
+        {
+            get { return sessionUser ?? (SessionObject)Session["EdoSessionObject"]; }
+            set { value = sessionUser; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Title = "Add New School";            
             if (!Page.IsPostBack)
             {
-                dropDownManager.GetLGA(ddlLGA, "ED");
-                dropDownManager.GetCategory(ddlSchoolCat);
-                dropDownManager.GetTitle(ddlTitle);
+                DropDownManager.GetLGA(ddlLGA, "ED");
+                DropDownManager.GetCategory(ddlSchoolCat);
+                DropDownManager.GetTitle(ddlTitle);
+                ddlLGA.SelectedValue = SessionUser.LgaId.ToString();
             }
         }
 
@@ -35,7 +41,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Registration
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
                 var user = new ApplicationUser() { UserName = txtEmail.Value, Email = txtEmail.Value, PhoneNumber = txtMobileNo.Value };
-                IdentityResult result = manager.Create(user, "@Ab1234567");
+                IdentityResult result = manager.Create(user, "@1234567");
                 if (result.Succeeded)
                 {
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -70,7 +76,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Registration
                     unitOfWork.School.Insert(school);
                     unitOfWork.Save();
                     //signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-                    dropDownManager.ShowPopUp("School Added Successfully !!!");
+                    DropDownManager.ShowPopUp("School Added Successfully !!!");
                     //IdentityHelper.RedirectToReturnUrl("Registration/School", Response);
                     ClearInput();
                 }

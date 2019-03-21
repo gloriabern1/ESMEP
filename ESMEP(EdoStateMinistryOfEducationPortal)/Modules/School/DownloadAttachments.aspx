@@ -21,7 +21,7 @@
 		<div class="col-sm-12">
 			<div class="card-box">
 				<div class="card-head">
-					<header>Download Document for Upload </header>
+					<header>Download Attendance List for Upload </header>
 				</div>
 				<div class="card-body" id="bar-parent2">
                     <div class="row">

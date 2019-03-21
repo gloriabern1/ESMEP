@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers;
 
 namespace ESMEP_EdoStateMinistryOfEducationPortal_.Services
 {
@@ -87,6 +88,35 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Services
             }
             return false;
         }
+
+        public bool ApproveOrRejectAttendance(bool status, int schoolId, string examId, string subjectId, string session)
+        {
+            int exam = 0;
+            int sessionId = 0;
+            int.TryParse(session, out sessionId);
+            int.TryParse(examId, out exam);
+            var registeredExam = DropDownManager.GetRegistrations(schoolId, sessionId, exam, subjectId);
+            foreach (var item in registeredExam)
+            {
+                item.AttendanceApprovedByInspector = status;
+                unitOfWork.ExamRegistered.Update(item);
+                unitOfWork.Save();
+            }
+            return true;
+        }
+        public bool ApproveOrRejectSchedule(bool status, int schoolId, string examId, string session)
+        {
+            int exam = 0;
+            int sessionId = 0;
+            int.TryParse(session, out sessionId);
+            int.TryParse(examId, out exam);
+            var registeredExam = DropDownManager.GetRegistrations(schoolId, sessionId, exam).FirstOrDefault();
+            registeredExam.EntyScheduleApprovedByInspector = status;
+            unitOfWork.ExamRegistered.Update(registeredExam);
+            unitOfWork.Save();
+            return true;
+        }
+
 
     }
 

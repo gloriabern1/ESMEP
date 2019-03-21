@@ -17,7 +17,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
     public partial class RegisterStudent : System.Web.UI.Page
     {
         UnitOfWork unitOfWork = new UnitOfWork();
-        DropDownManager dropDownManager = new DropDownManager();
+       // DropDownManager dropDownManager = new DropDownManager();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -50,7 +50,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             }
             if(selected == false)
             {
-                dropDownManager.ShowPopUp("Please Select atleast one Exam to register ");
+                DropDownManager.ShowPopUp("Please Select atleast one Exam to register ");
             }
             else
             {
@@ -63,7 +63,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
         public void PopulateExam()
         {
             var userId = HttpContext.Current.User.Identity.GetUserId();            
-            var school = dropDownManager.GetSchoolByUserId(userId);
+            var school = DropDownManager.GetSchoolByUserId(userId);
             if (school != null)
             {
                 lblSchoolId.Text = school.Id.ToString();
@@ -78,7 +78,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                 dt.Columns.Add("EXAMCODE");
                 dt.Columns.Add("FEE");
 
-                var Exams = dropDownManager.GetExaminations(catId);
+                var Exams = DropDownManager.GetExaminations(catId);
                 int sn = 0;            
                 foreach (var item in Exams)
                 {                
@@ -103,7 +103,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             dt.Columns.Add("Name");
             dt.Columns.Add("Sex");
 
-            var Students = dropDownManager.GetAllStudents(lblSchoolId.Text);
+            var Students = DropDownManager.GetAllStudents(lblSchoolId.Text);
             int sn = 0;
             foreach (var item in Students)
             {
@@ -179,7 +179,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                             }
                             else
                             {
-                                dropDownManager.ShowPopUp("Subject selected is below or above required no of subjects :: Minimum of 8 subject and Maximun is 9");
+                                DropDownManager.ShowPopUp("Subject selected is below or above required no of subjects :: Minimum of 8 subject and Maximun is 9");
                                 mutilView1.ActiveViewIndex = 2;
                             }
                         }
@@ -187,7 +187,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                     }                   
                 }
             }
-            dropDownManager.ShowPopUp(noStudent + " Student Registered Successfully");
+            DropDownManager.ShowPopUp(noStudent + " Student Registered Successfully");
             mutilView1.ActiveViewIndex = 3;
             LoadRecipt();
         }
@@ -200,7 +200,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             dt.Columns.Add("Subject");
             dt.Columns.Add("SubjectCode");
 
-            var Exams = dropDownManager.GetAllSubject();
+            var Exams = DropDownManager.GetAllSubject();
             int sn = 0;
             foreach (var item in Exams)
             {
@@ -230,7 +230,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             }
             if (selected == false)
             {
-                dropDownManager.ShowPopUp("Please Select atleast one Student to register ");
+                DropDownManager.ShowPopUp("Please Select atleast one Student to register ");
             }
             else
             {
@@ -241,7 +241,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
 
         public  void LoadRecipt()
         {
-            var ExamRegistered = dropDownManager.GetRegistrationsById(lblID.Text);
+            var ExamRegistered = DropDownManager.GetRegistrationsById(lblID.Text);
             //DataTable dt = new DataTable();
             //dt.Columns.Add("SN");
             //dt.Columns.Add("Type");

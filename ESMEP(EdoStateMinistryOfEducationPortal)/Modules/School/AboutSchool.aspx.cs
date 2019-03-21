@@ -10,7 +10,6 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
 {
     public partial class ViewDetails : System.Web.UI.Page
     {
-        DropDownManager dropDownManager = new DropDownManager();
         StaticsManager statManager = new StaticsManager();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +25,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
 
             if (id != null)
             {
-              var school = dropDownManager.GetSchool(id);
+              var school = DropDownManager.GetSchool(id);
               
                 lblEmail.Text = school.Email;
                 lblDate.Text = school.DateOfIncorporation.ToLongDateString();

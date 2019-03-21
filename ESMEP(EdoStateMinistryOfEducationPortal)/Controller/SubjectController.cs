@@ -10,7 +10,6 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Controller
 {
     public class SubjectController : ApiController
     {
-        DropDownManager dropDownManager = new DropDownManager();
 
         // GET api/<controller>
         //public IEnumerable<string> Get()
@@ -22,7 +21,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Controller
         [HttpGet]
         public IHttpActionResult GetAllSubject(int? id)
         {
-            return Ok(dropDownManager.GetAllSubject());
+            return Ok(DropDownManager.GetAllSubject());
         }
 
         // GET api/<controller>/5

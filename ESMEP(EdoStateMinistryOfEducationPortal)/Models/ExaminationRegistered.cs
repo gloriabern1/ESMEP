@@ -46,10 +46,16 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Models
 
         public bool? Attendance { get; set; }
 
-        public string Remarks { get; set; }
+        public string AttendanceRemarks { get; set; }
+
+        public string EntryScheduleRemarks { get; set; }
 
         public DateTime DateRegistered { get; set; }
-           
+
+        public bool? AttendanceApprovedByInspector { get; set; }
+
+        public bool? EntyScheduleApprovedByInspector { get; set; }
+
         public bool? IsProcessed { get; set; }
 
         [StringLength(50)]

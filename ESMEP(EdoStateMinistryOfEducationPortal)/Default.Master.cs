@@ -32,12 +32,16 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_
                             if (!string.IsNullOrEmpty(sessionUser.Name))
                             {
                                 lblUsername.Text = sessionUser.Name;
+                                LoadMenu(sessionUser.Name, sessionUser.UserId);
                             }
                             else
                             {
-                                sessionUser.Name = HttpContext.Current.User.Identity.GetUserName();
+                                Response.Redirect("~/Account/Login");
                             }
-                            LoadMenu(sessionUser.Name, sessionUser.UserId);
+                        }
+                        else
+                        {
+                            Response.Redirect("~/Account/Login");
                         }
                     }
                     else

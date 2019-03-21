@@ -18,10 +18,14 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
 {
     public class DropDownManager
     {
-        UnitOfWork unitOfWork = new UnitOfWork();
+       static UnitOfWork unitOfWork = new UnitOfWork();
         protected static Hashtable handlerPages = new Hashtable();
+        public DropDownManager()
+        {
 
-        public void GetLGA(DropDownList ddl, string stateId)
+        }
+
+        public static void GetLGA(DropDownList ddl, string stateId)
         {
             string lga = "";
             string lgaId = "";
@@ -52,7 +56,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
 
         }
 
-        public void GetState(DropDownList ddl)
+        public static void GetState(DropDownList ddl)
         {
             string state = "";
             string stateId = "";
@@ -70,7 +74,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
 
         }
 
-        public void GetRelationship(DropDownList ddl)
+        public static void PopulateRelation(DropDownList ddl)
         {
             string state = "";
             string stateId = "";
@@ -88,7 +92,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
 
         }
 
-        public void GetGender(DropDownList ddl)
+        public static void GetGender(DropDownList ddl)
         {
             string state = "";
             string stateId = "";
@@ -105,7 +109,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             }
 
         }
-        public void GetExam(DropDownList ddl)
+        public static void GetExam(DropDownList ddl)
         {
             string state = "";
             string stateId = "";
@@ -123,7 +127,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
 
         }
 
-        public void GetCategory(DropDownList ddl)
+        public static void GetCategory(DropDownList ddl)
         {
             string state = "";
             string stateId = "";
@@ -140,7 +144,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             }
 
         }
-        public void GetTitle(DropDownList ddl)
+        public static void GetTitle(DropDownList ddl)
         {
             string state = "";
             string stateId = "";
@@ -157,7 +161,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             }
         }
 
-        public void PopulateSubject(DropDownList ddl)
+        public static void PopulateSubject(DropDownList ddl)
         {
             string subject = "";
             string subjectCode = "";
@@ -167,14 +171,14 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             var allSubject = unitOfWork.Subject.Get();
             foreach (var item in allSubject)
             {
-                subjectCode = item.Code.ToString();
+                subjectCode = item.ID.ToString();
                 subject = item.Name.ToString();
 
                 ddl.Items.Add(new ListItem(subject, subjectCode));
             }
         }
 
-        public void PopulateExam(DropDownList ddl)
+        public static void PopulateExam(DropDownList ddl)
         {
             string Exams = "";
             string examsCode = "";
@@ -191,7 +195,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             }
         }
 
-        public void PopulateExam(DropDownList ddl, int category)
+        public static void PopulateExam(DropDownList ddl, int category)
         {
             string exam = "";
             string examCode = "";
@@ -208,7 +212,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             }
         }
 
-        public void PopulateYear(DropDownList ddl)
+        public static void PopulateYear(DropDownList ddl)
         {
             string session = "";
             string sessionId = "";
@@ -225,7 +229,24 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             }
         }
 
-        public int GetSchoolId(string UserId)
+        public static void PopulateSchool(DropDownList ddl)
+        {
+            string school = "";
+            string schoolId = "";
+            ddl.Items.Clear();
+            ddl.Items.Add("Select School");
+
+            var allSession = unitOfWork.School.Get();
+            foreach (var item in allSession)
+            {
+                schoolId = item.Id.ToString();
+                school = item.Name.ToString();
+
+                ddl.Items.Add(new ListItem(school, schoolId));
+            }
+        }
+
+        public static int GetSchoolId(string UserId)
         {
             var school = unitOfWork.School.Get(x => x.UserId == UserId);
             if(school.Count() > 0)
@@ -236,7 +257,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             return 1;
         }
 
-        public void ShowPopUp(string Message)
+        public static void ShowPopUp(string Message)
         {
             if (!(handlerPages.Contains(HttpContext.Current.Handler)))
             {
@@ -280,25 +301,42 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             }
         }
 
-        public IEnumerable<School> GetAllSchools()
+        public static IEnumerable<School> GetAllSchools()
         {
             var allSchools = unitOfWork.School.Get();
             return allSchools;
         }
 
-        public IEnumerable<School> GetAllSchools(int lga)
+        public static IEnumerable<School> GetAllSchools(int lga)
         {
             var schools = unitOfWork.School.GetQueryable(x => x.LocalGovernmentID == lga);
             return schools;
         }
 
-        public IEnumerable<School> GetAllSchools(int lga, int category)
+        public static IEnumerable<School> GetAllSchools(int lga, int? schoolType, int? categoryId)
+        {
+            if(categoryId != null && schoolType != null)
+            {
+                return unitOfWork.School.Get(x => x.LocalGovernmentID == lga && x.CategoryId == categoryId && x.SchoolTypeId == schoolType).OrderBy(x => x.Name);
+            }
+            else if (categoryId != null)
+            {
+                return unitOfWork.School.Get(x => x.LocalGovernmentID == lga && x.CategoryId == categoryId).OrderBy(x => x.Name);
+            }
+            else if(schoolType != null)
+            {
+                return unitOfWork.School.GetQueryable(x => x.LocalGovernmentID == lga && x.SchoolTypeId == schoolType);
+            }
+            return unitOfWork.School.GetQueryable(x => x.LocalGovernmentID == lga);
+        }
+
+        public static IEnumerable<School> GetAllSchools(int lga ,int category)
         {
             var schools = unitOfWork.School.Get(x => x.LocalGovernmentID == lga && x.CategoryId == category).OrderBy(x => x.Name);
             return schools;
         }
 
-        public IEnumerable<Student> GetAllStudents(string id)
+        public static IEnumerable<Student> GetAllStudents(string id)
         {
             if(id != null)
             {
@@ -313,7 +351,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
 
         }
 
-        public IEnumerable<Subject> GetAllSubject()
+        public static IEnumerable<Subject> GetAllSubject()
         {
             var allSubject = unitOfWork.Subject.Get(x => x.Activated == true);
             return allSubject;
@@ -339,7 +377,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             return studentViewModel;
         }
 
-        public IEnumerable<Examination> GetExaminations(string catId)
+        public static IEnumerable<Examination> GetExaminations(string catId)
         {
             if(catId == null)
             {
@@ -353,7 +391,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             }
         }
 
-        public IEnumerable<ExamDetailViewModel> GetRegisteredStudents()
+        public static IEnumerable<ExamDetailViewModel> GetRegisteredStudents()
         {
             IList<ExamDetailViewModel> examDetailModel = new List<ExamDetailViewModel>();
             var examDetail = unitOfWork.ExamRegistered.Get(includeProperties:"School, Examination, Student,Subject");
@@ -389,29 +427,29 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             }
             return examDetailModel;
         }
-        public School GetSchool(string Id)
+        public static School GetSchool(string Id)
         {
             var school = unitOfWork.School.Get(x => x.Id.ToString() == Id).FirstOrDefault();
             return school;
         }  
-        public string GetLGAIdByName(string Name)
+        public static int GetLGAIdByName(string Name)
         {
-            string lga = unitOfWork.lga.Get(l => l.LocalGovernment1 == Name).FirstOrDefault().ID.ToString();
+            var lga = unitOfWork.lga.Get(l => l.LocalGovernment1 == Name).FirstOrDefault().ID;
             return lga;
         }   
-        public School GetSchoolByUserId(string userId)
+        public static School GetSchoolByUserId(string userId)
         {
             var school = unitOfWork.School.GetQueryable(s => s.UserId == userId).FirstOrDefault();
             return school;
         }
 
-        public IEnumerable<ExaminationRegistered> GetRegistrations(string Id)
+        public static IEnumerable<ExaminationRegistered> GetRegistrations(string Id)
         {
             var allregistration = unitOfWork.ExamRegistered.GetQueryable(e => e.SchoolId.ToString() == Id);
             return allregistration;
         }
 
-        public IEnumerable<ExaminationRegistered> GetRegistrations(int schoolId, int session, int exam)
+        public static IEnumerable<ExaminationRegistered> GetRegistrations(int schoolId, int session, int exam)
         {
             List<ExaminationRegistered> DinstincStudent = new List<ExaminationRegistered>();
             var examReg = unitOfWork.ExamRegistered.GetQueryable(filter: x => x.SchoolId == schoolId && x.SessionId == session && x.ExamId == exam);
@@ -429,17 +467,17 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             return DinstincStudent;
         }
 
-        public IEnumerable<ExaminationRegistered> GetRegistrations(int schoolId, int session, int exam, string subject)
+        public static IEnumerable<ExaminationRegistered> GetRegistrations(int schoolId, int session, int exam, string subject)
         {
-            var examReg = unitOfWork.ExamRegistered.GetQueryable(filter: x => x.SchoolId == schoolId && x.SessionId == session && x.ExamId == exam && x.SubjectCode == subject);
+            var examReg = unitOfWork.ExamRegistered.GetQueryable(filter: x => x.SchoolId == schoolId && x.SessionId == session && x.ExamId == exam && x.SubjectId.ToString() == subject);
             return examReg;
         }
-        public IEnumerable<ExaminationRegistered> GetRegistrationsById(string Id)
+        public static IEnumerable<ExaminationRegistered> GetRegistrationsById(string Id)
         {
             var allregistration = unitOfWork.ExamRegistered.GetQueryable(e => e.RegistrationId.ToString() == Id);
             return allregistration;
         }
-        public bool IsStudentRegistered(int studentID)
+        public static bool IsStudentRegistered(int studentID)
         {
             var data = unitOfWork.ExamRegistered.Get(x => x.StudentId == studentID).FirstOrDefault();
             if (data != null)
@@ -448,7 +486,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
                 return false;
         }
 
-        public bool IsSchoolRegistered(int schoolId)
+        public static bool IsSchoolRegistered(int schoolId)
         {
             var data = unitOfWork.ExamRegistered.Get(x => x.SchoolId == schoolId).FirstOrDefault();
             if (data != null)
@@ -456,7 +494,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             else
                 return false;
         }
-        public void GenerateExcel(DataTable dt, string filename, string type , HttpResponse r)
+        public static void GenerateExcel(DataTable dt, string filename, string type , HttpResponse r)
         {
 
             if (dt != null && dt.Rows.Count > 0)
@@ -555,6 +593,9 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
                         string subject8 = String.Format("M2:M{0}", rowCount + 1);
                         string subject9 = String.Format("N2:N{0}", rowCount + 1);
                         string subject10 = String.Format("O2:O{0}", rowCount + 1);
+                        string subject11 = String.Format("P2:P{0}", rowCount + 1);
+                        string subject12 = String.Format("Q2:Q{0}", rowCount + 1);
+                        string subject13 = String.Format("R2:R{0}", rowCount + 1);
 
 
                         //string remarkRng = String.Format("H2:H{0}", rowCount + 1);
@@ -688,6 +729,12 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
                         ws.Cells[subject4].Style.Locked = false;
                         ws.Cells[subject5].Style.Locked = false;
                         ws.Cells[subject6].Style.Locked = false;
+                        ws.Cells[subject7].Style.Locked = false;
+                        ws.Cells[subject8].Style.Locked = false;
+                        ws.Cells[subject9].Style.Locked = false;
+                        ws.Cells[subject10].Style.Locked = false;
+                        ws.Cells[subject11].Style.Locked = false;
+                        ws.Cells[subject13].Style.Locked = false;
                     }
 
                     if(type == "Pri_Entry")
@@ -702,8 +749,10 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
                         string subject4 = String.Format("I2:I{0}", rowCount + 1);
                         string subject5 = String.Format("J2:J{0}", rowCount + 1);
                         string subject6 = String.Format("K2:K{0}", rowCount + 1);
+                        string subject7 = String.Format("L2:L{0}", rowCount + 1);
+                        string subject8 = String.Format("M2:M{0}", rowCount + 1);
+                        string subject9 = String.Format("N2:N{0}", rowCount + 1);
 
-                       
                         //string remarkRng = String.Format("H2:H{0}", rowCount + 1);
                         //string allRng = String.Format("A1:O{0}", rowCount + 1);
 
@@ -786,6 +835,9 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
                         ws.Cells[subject4].Style.Locked = false;
                         ws.Cells[subject5].Style.Locked = false;
                         ws.Cells[subject6].Style.Locked = false;
+                        ws.Cells[subject7].Style.Locked = false;
+                        ws.Cells[subject8].Style.Locked = false;
+                        ws.Cells[subject9].Style.Locked = false;
                     }
 
 
@@ -815,8 +867,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
                     ws.Protection.AllowInsertRows = true;
 
 
-
-
+                    
                     //ws.Cells[AssignValRng].Style.Locked = false;
                     //ws.Cells[caValRng].Style.Locked = false;
                     //ws.Cells[examValRng].Style.Locked = false;
@@ -844,9 +895,27 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers
             }
         }
 
-        public IEnumerable<Subject> GetRegisteredSubject(int examId, int studentId)
+        public static IEnumerable<Subject> GetRegisteredSubject(int examId, int studentId)
         {
             return unitOfWork.ExamRegistered.Get(filter: x => x.ExamId == examId && x.StudentId == studentId).Select(x => x.Subject);
+        }
+
+        public static int GetRelationShipByName(string relation)
+        {
+            var result = unitOfWork.Relationship.Get(filter: x => x.RELATIONSHIP_NAME == relation)?.FirstOrDefault().RELATIONSHIP_ID ?? 1;
+            return result; 
+        }
+
+        public static string GetGenderByName(string sex)
+        {
+            var result = unitOfWork.sex.Get(filter: x => x.GENDER_ID == sex || x.GENDER_NAME == sex).SingleOrDefault().GENDER_ID;
+            return result;
+        }
+
+        public static string GetSession(string id)
+        {
+            var result = unitOfWork.session.Get(filter: x => x.ID.ToString() == id).FirstOrDefault().Name;
+            return result;
         }
     } 
 

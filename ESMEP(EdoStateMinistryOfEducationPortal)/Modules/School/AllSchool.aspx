@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.Master" AutoEventWireup="true" CodeBehind="AllSchool.aspx.cs" Inherits="ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School.AllSchool1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <link href="../../Content/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
           <div class="page-bar">
@@ -37,35 +37,13 @@
                                  
                                  <div class="card-body ">
                                  	<div class="row">
-                                       <div class="col-md-6 col-sm-6 col-6">
+                                       <div class="col-md-6 col-sm-6 col-6 pull-right">
                                            <div class="btn-group">
                                                <a href="../registration/addSchool" id="addRow" class="btn btn-info">
                                                    Add New <i class="fa fa-plus"></i>
                                                </a>
                                            </div>
                                        </div>
-                                       <div class="col-md-6 col-sm-6 col-6">
-                                      <%--     <div class="btn-group pull-right">
-                                               <a class="btn deepPink-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                                   <i class="fa fa-angle-down"></i>
-                                               </a>
-                                               <ul class="dropdown-menu pull-right">
-                                                   <li>
-                                                       <a href="javascript:;">
-                                                           <i class="fa fa-print"></i> Print </a>
-                                                   </li>
-                                                   <li>
-                                                       <a href="javascript:;">
-                                                           <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                                   </li>
-                                                   <li>
-                                                       <a href="javascript:;">
-                                                           <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                                   </li>
-                                               </ul>
-                                           </div>
-                                       </div>--%>
-                                   </div>
                                    <div class="table-scrollable">
                                     <asp:GridView ID="gvSchool" CssClass="table table-striped table-bordered table-hover table-checkable order-column valign-middle" OnRowCommand="gvSchool_RowCommand"
                                         AutoGenerateColumns="false" runat="server">
@@ -84,9 +62,9 @@
                                             </asp:BoundField>
                                             <asp:BoundField  DataField="Address" HeaderText="ADDRESS">
                                             </asp:BoundField>                    
-                                            <asp:BoundField  DataField="Principal" HeaderText="NAME OF PRINCIPAL">
+                                            <asp:BoundField  DataField="LocalGovt" HeaderText="LOCAL GOVERNMENT">
                                             </asp:BoundField>              
-                                            <asp:BoundField  DataField="Student" HeaderText="# OF STUDENTS">
+                                            <asp:BoundField  DataField="Inspector" HeaderText="INSPECTOR">
                                             </asp:BoundField>                
                                             <asp:TemplateField HeaderText="ACTION">
                                                     <ItemTemplate>  
@@ -95,9 +73,7 @@
                                                     <ItemStyle Width="20px" />
                                                 </asp:TemplateField>
                                             </Columns>
-                                    </asp:GridView>
-
-									
+                                    </asp:GridView>									
 									</div>
                                  </div>
                              </div>
@@ -105,9 +81,12 @@
                     </div>
                 </div>
         <!-- data tables -->
-    <script src="../../Content/assets/plugins/datatables/jquery.dataTables.min.js" ></script>
- 	<script src="../../Content/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js" ></script>
-    <script src="../../Content/assets/js/pages/table/table_data.js" ></script>
+   
+            <script type="text/javascript">  
+    $(document).ready(function () {  
+        $('#<%=gvSchool.ClientID%>').DataTable();  
+    });  
+</script>  
 <%-- Page Script --%>
     <script src="../../Scripts/Pages/AllSchool.js"></script>
 </asp:Content>

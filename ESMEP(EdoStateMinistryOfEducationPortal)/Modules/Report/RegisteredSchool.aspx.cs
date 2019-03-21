@@ -11,7 +11,6 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Report
 {
     public partial class RegisteredSchool : System.Web.UI.Page
     {
-        DropDownManager dropDownManager = new DropDownManager();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -27,7 +26,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Report
             dt.Columns.Add("School");
             dt.Columns.Add("Status");
 
-            var student = dropDownManager.GetAllStudents(null);
+            var student = DropDownManager.GetAllStudents(null);
             if (student != null)
             {
                 int sn = 0;
@@ -51,7 +50,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Report
 
         public string GetStatus(int studentId)
         {
-            bool isRegistered = dropDownManager.IsStudentRegistered(studentId);
+            bool isRegistered = DropDownManager.IsStudentRegistered(studentId);
             if (isRegistered == true)
                 return "Registered";
             else

@@ -18,6 +18,7 @@
     <link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 	<link href="fonts/material-design-icons/material-icon.css" rel="stylesheet" type="text/css" />
 	<!--bootstrap -->
+
 	<link href="Content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="Content/assets/plugins/summernote/summernote.css" rel="stylesheet">
     <!-- Material Design Lite CSS -->
@@ -31,14 +32,13 @@
     <link href="Content/assets/css/theme/light/style.css" rel="stylesheet" type="text/css" />
     <link href="Content/assets/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="Content/assets/css/theme/light/theme-color.css" rel="stylesheet" type="text/css" />
-
-    <script src='<%=Page.ResolveUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
+    <link href="Content/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        <script src='<%=Page.ResolveUrl("~/Scripts/jquery-1.10.2.min.js")%>'></script>
     <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/jquery/jquery.min.js" )%>' ></script>
     <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/popper/popper.js" )%>' ></script>
     <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/jquery-blockui/jquery.blockui.min.js" )%>' ></script>
 	<script src='<%=Page.ResolveUrl("~/Content/assets/plugins/jquery-slimscroll/jquery.slimscroll.js")%>'></script>
      <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/material/material.min.js") %>'></script>
-
 	<!-- favicon -->
     <link rel="shortcut icon" href="http://radixtouch.in/templates/admin/smart/source/assets/img/favicon.ico" /> 
  
@@ -54,7 +54,7 @@
             <div class="page-header-inner ">
                 <!-- logo start -->
                 <div class="page-logo">
-                    <a href="index.html">
+                    <a href="#">
                     <span class="logo-icon material-icons fa-rotate-45">school</span>
                     <span class="logo-default" >EXAM PORTAL</span> </a>
                 </div>
@@ -140,6 +140,7 @@
       
         </form>
     <!-- start js include path -->
+
     <!-- bootstrap -->
     <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/bootstrap/js/bootstrap.min.js" )%>' ></script>
     <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" )%>' ></script>
@@ -149,6 +150,9 @@
 	<script src='<%=Page.ResolveUrl("~/Content/assets/js/app.js" ) %>' ></script>
     <script src='<%=Page.ResolveUrl("~/Content/assets/js/layout.js" ) %>' ></script>
     <script src='<%=Page.ResolveUrl("~/Content/assets/js/theme-color.js" ) %>' ></script>
+     <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/datatables/jquery.dataTables.min.js" ) %>' ></script>
+ 	<script src='<%=Page.ResolveUrl("~/Content/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"  ) %>' ></script>
+    <script src='<%=Page.ResolveUrl("~/Content/assets/js/pages/table/table_data.js"  ) %>' ></script>
 
     <!-- chart js -->
     <script src='<%=Page.ResolveUrl("~/Content/assets/plugins/chart-js/Chart.bundle.js" ) %>' ></script>

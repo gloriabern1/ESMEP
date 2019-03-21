@@ -66,4 +66,60 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.ViewModels
         public string UserId { get; set; }
         public string Name { get; set; }
     }
+
+    public class XmlStudentUpload
+    {
+        public int ID { get; set; }
+        public string RegNum { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string OtherName { get; set; }
+        public string FullName { get; set; }
+        public string DateofBirth { get; set; }
+        public string Gender { get; set; }
+        public string ExamYear { get; set; }
+        public string Address { get; set; }
+        public string Base64Picture { get; set; }
+        public int SponosorId { get; set; }
+
+    }
+
+    public class XmlSponosorUpload
+    {
+        public int SponosorId { get; set; }
+        public string SponosorName { get; set; }
+        public string SponosorEmail { get; set; }
+        public string SponosorPhone { get; set; }
+        public string SponosorAddress { get; set; }
+        public string SponosorRelationship { get; set; }
+    }
+
+    public class XmlStudent
+    {
+        public int ID { get; set; }
+        public string RegNum { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string OtherName { get; set; }
+        public string FullName { get; set; }
+        public string DateofBirth { get; set; }
+        public string Gender { get; set; }
+        public string ExamYear { get; set; }
+        public string Address { get; set; }
+        public string Base64Picture { get; set; }
+        public int SponosorId { get; set; }
+        public string SponosorName { get; set; }
+        public string SponosorEmail { get; set; }
+        public string SponosorPhone { get; set; }
+        public string SponosorAddress { get; set; }
+        public string SponosorRelationship { get; set; }
+    }
+
+    public class QuotaViewModel
+    {
+        public int SchoolId { get; set; }
+        public int SessionId { get; set; }
+        public string Year { get; set; }
+        public int Quota { get; set; }
+    }
 }

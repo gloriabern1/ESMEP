@@ -127,7 +127,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtGEmail;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtGEmail;
         
         /// <summary>
         /// ddlRelation control.

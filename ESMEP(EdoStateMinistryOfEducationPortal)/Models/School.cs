@@ -40,12 +40,10 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Models
 
         [Required]
         public string NameOfPrincipal { get; set; }
-
+        public bool? IsQuotaAssigned { get; set; }
         [Required]
         public string UserId { get; set; }
-
         public string CreatedBy { get; set; }
-
         public string ModifiedBy { get; set; }
 
         [Column(TypeName = "date")]

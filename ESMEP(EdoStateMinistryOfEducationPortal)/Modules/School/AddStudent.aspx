@@ -113,7 +113,7 @@
                      <div class="col-lg-4 p-t-20"> 
 						<div class = "mdl-textfield mdl-js-textfield">
 						    <input class = "mdl-textfield__input" type = "text" runat="server" pattern = "-?[0-9]*(\.[0-9]+)?" id = "txtGMobile">
-						    <label class = "mdl-textfield__label" for = "txtname">Phone Number</label>
+						    <label class = "mdl-textfield__label" for = "txtGMobile">Phone Number</label>
       						<span class = "mdl-textfield__error">Number required!</span>
 
 					</div>
@@ -121,7 +121,7 @@
 
                      <div class="col-lg-4 p-t-20"> 
 						<div class = "mdl-textfield mdl-js-textfield">
-						    <input class = "mdl-textfield__input" type = "text" runat="server" id = "txtGEmail">
+						    <input class = "mdl-textfield__input" type="email" runat="server" id = "txtGEmail">
 						    <label class = "mdl-textfield__label" for = "txtname">Email</label>
 					</div>
 					</div>

@@ -1,19 +1,25 @@
 ﻿using ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure;
 using ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure.Managers;
 using System;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ESMEP_EdoStateMinistryOfEducationPortal_.ViewModels;
 
 namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
 {
     public partial class AllSchool1 : System.Web.UI.Page
     {
-        UnitOfWork unitOfWork = new UnitOfWork();
-        DropDownManager dropDownManager = new DropDownManager();
+        public SessionObject sessionUser;
+        public SessionObject SessionUser
+        {
+            get { return sessionUser ?? (SessionObject)Session["EdoSessionObject"]; }
+            set { value = sessionUser; }
+        }
         StaticsManager statManager = new StaticsManager();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -32,11 +38,20 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             dt.Columns.Add("Name");
             dt.Columns.Add("Email");
             dt.Columns.Add("Address");
-            dt.Columns.Add("Principal");
-            dt.Columns.Add("Student");
+            dt.Columns.Add("LocalGovt");
+            dt.Columns.Add("Inspector");
 
-            var schools = dropDownManager.GetAllSchools();
-            if(schools != null)
+            IEnumerable<Models.School> schools;
+            if(User.IsInRole("Inspector"))
+            {
+                 schools = DropDownManager.GetAllSchools(SessionUser.LgaId);
+            }
+            else
+            {
+                schools = DropDownManager.GetAllSchools();
+            }
+
+            if (schools != null)
             {
                 int sn = 0;
                 foreach (var item in schools)
@@ -46,12 +61,13 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                     string Name = item.Name.ToString();
                     string Email = item.Email.ToString();
                     string Addreess = item.Address.ToString();
-                    var nofstudent = statManager.GetStudentCount(item.Id);
-                    string principal = item.NameOfPrincipal;
+                    string principal = item.LocalGovernment.LocalGovernment1;
+                    var nofstudent = item.LocalGovernment.Inspectors.FirstOrDefault()?.CIEName; // statManager.GetStudentCount(item.Id);
                     dt.Rows.Add(id, sn, Name, Email, Addreess, principal, nofstudent);
                 }
                 gvSchool.DataSource = dt;
                 gvSchool.DataBind();
+                gvSchool.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
         }
 

@@ -31,24 +31,6 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Registration {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtname;
         
         /// <summary>
-        /// txtAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtAddress;
-        
-        /// <summary>
-        /// ddlLGA control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLGA;
-        
-        /// <summary>
         /// txtEmail control.
         /// </summary>
         /// <remarks>
@@ -67,13 +49,22 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Registration {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtMobileNo;
         
         /// <summary>
-        /// txtPrincipal control.
+        /// txtAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPrincipal;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtAddress;
+        
+        /// <summary>
+        /// ddlLGA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLGA;
         
         /// <summary>
         /// ddlTitle control.
@@ -83,6 +74,15 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.Registration {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTitle;
+        
+        /// <summary>
+        /// txtPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPrincipal;
         
         /// <summary>
         /// txtdate control.

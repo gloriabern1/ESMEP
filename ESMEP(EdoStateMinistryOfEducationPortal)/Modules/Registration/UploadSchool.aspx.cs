@@ -19,7 +19,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
     {
         protected static string imagePath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
         UnitOfWork unitOfWork = new UnitOfWork();
-        DropDownManager dropDownManager = new DropDownManager();
+       // DropDownManager dropDownManager = new DropDownManager();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +29,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
         protected void btnUpload_Click(object sender, EventArgs e)
         {
             //HttpPostedFileBase file = xlsxSchol.PostedFile.
-            var fileName = GetExcelFile();
+            var fileName = GeneralUtility.GetExcelFile(xlsxSchol);
 
             if (!String.IsNullOrEmpty(fileName))
             {
@@ -120,7 +120,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                     {
                         category = "2";
                     }
-                    var lgaid = dropDownManager.GetLGAIdByName(LGA);
+                    var lgaid = DropDownManager.GetLGAIdByName(LGA);
                     //Create User
                     var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                     var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
@@ -139,7 +139,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                         school.MobileNo = Convert.ToDecimal(MobileNo);
                         school.SchoolTypeId = int.Parse(Type);
                         school.NameOfPrincipal = PrincipalName;
-                        school.LocalGovernmentID = int.Parse(lgaid);
+                        school.LocalGovernmentID = lgaid;
                         school.DateOfIncorporation = Convert.ToDateTime(DateOfInCorporation);
                         school.DateCreated = DateTime.Now;
                         school.CategoryId = int.Parse(category);
@@ -154,10 +154,10 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                         ErrorLine = Convert.ToInt32(gvResult.Rows[i].Cells[0].Text);
                     }
                 }
-                dropDownManager.ShowPopUp(count.ToString() + " Records Successfully Inserted !!!");
+                DropDownManager.ShowPopUp(count.ToString() + " Records Successfully Inserted !!!");
                 if (ErrorLine != 0)
                 {
-                    dropDownManager.ShowPopUp("Record at Row " + ErrorLine + " was not Inserted#");
+                    DropDownManager.ShowPopUp("Record at Row " + ErrorLine + " was not Inserted#");
                 }
             }
             catch (Exception ex)

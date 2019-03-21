@@ -15,17 +15,16 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
     public partial class AddStudent : System.Web.UI.Page
     {
         UnitOfWork unitOfWork = new UnitOfWork();
-        DropDownManager dropDownManager = new DropDownManager();
+        //DropDownManager dropDownManager = new DropDownManager();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!Page.IsPostBack)
             {
-                dropDownManager.GetRelationship(ddlRelation);
-                dropDownManager.GetLGA(ddlLGA, null);
-                dropDownManager.GetState(ddlState);
-                dropDownManager.GetGender(ddlSex);
+                DropDownManager.PopulateRelation(ddlRelation);
+                DropDownManager.GetLGA(ddlLGA, null);
+                DropDownManager.GetState(ddlState);
+                DropDownManager.GetGender(ddlSex);
             }
         }
 
@@ -36,7 +35,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                 if (Page.IsValid)
                 {
                     string userId = HttpContext.Current.User.Identity.GetUserId();
-                   var schoolId = dropDownManager.GetSchoolId(userId);
+                   var schoolId = DropDownManager.GetSchoolId(userId);
                     var student = new Student()
                     {
                         FirstName = txtFirstName.Value,
@@ -64,7 +63,8 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                     };
                     unitOfWork.GuardianDetails.Insert(guardianDetails);
                     unitOfWork.Save();
-                    dropDownManager.ShowPopUp("Student Added Successfull");
+                    ClearInputs();
+                    DropDownManager.ShowPopUp("Student Added Successfull");
                 }
             }
 
@@ -132,6 +132,11 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                 ErrorMessage.Text = "Please Enter Guardian Phone Number";
                 return false;
             }
+            if (DateTime.Parse(txtdate.Value) >= DateTime.Now )
+            {
+                ErrorMessage.Text = "Date cannot be equal or greater than today";
+                return false;
+            }
             //if (string.IsNullOrEmpty(iddropzone.PostedFile.FileName))
             //{
             //    ErrorMessage.Text = "Please Upload Student Passport";
@@ -144,8 +149,26 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
         {
             if(ddlState.SelectedIndex > 0)
             {
-                dropDownManager.GetLGA(ddlLGA, ddlState.SelectedValue.TrimEnd());
+                DropDownManager.GetLGA(ddlLGA, ddlState.SelectedValue.TrimEnd());
             }
         }
+
+        public void ClearInputs()
+        {
+            txtAddress.Value = "";
+            txtdate.Value = "";
+            txtFirstName.Value = "";
+            txtFullname.Value = "";
+            txtGAddress.Value = "";
+            txtGEmail.Value = "";
+            txtGMobile.Value = "";
+            txtLastName.Value = "";
+            txtMidName.Value = "";
+            ddlLGA.SelectedIndex = 0;
+            ddlRelation.SelectedIndex = 0;
+            ddlSex.SelectedIndex = 0;
+            ddlState.SelectedIndex = 0;
+        }
+
     }
 }

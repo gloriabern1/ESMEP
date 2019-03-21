@@ -13,7 +13,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
 {
     public partial class DownloadEntrySchedule : System.Web.UI.Page
     {
-        DropDownManager dropManager = new DropDownManager();
+        //DropDownManager dropManager = new DropDownManager();
         public SessionObject sessionUser;
         public SessionObject SessionUser
         {
@@ -25,14 +25,14 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
         {
             if (!IsPostBack)
             {
-                dropManager.PopulateExam(ddlExam, SessionUser.CategoryId);
-                dropManager.PopulateYear(ddlYear);
+                DropDownManager.PopulateExam(ddlExam, SessionUser.CategoryId);
+                DropDownManager.PopulateYear(ddlYear);
             }
          }
 
         void GetRegisteredSubject(int examId, int StudentId)
         {
-            dropManager.GetRegisteredSubject(examId, StudentId);
+            DropDownManager.GetRegisteredSubject(examId, StudentId);
         }
 
         protected void ddlExam_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,7 +67,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             table.Columns.Add("Name");
             table.Columns.Add("Exam NO");
             table.Columns.Add("Sex");
-
+            lblExamName.Text = ddlExam.SelectedItem.Text;
             if (SessionUser.CategoryId == 1)
             {                
                 table.Columns.Add("Eng");
@@ -83,7 +83,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                 int exam = int.Parse(ddlExam.SelectedValue.ToString());
                 int session = int.Parse(ddlYear.SelectedValue.ToString());
                 string userId = string.Empty;
-                var registration = dropManager.GetRegistrations(SessionUser.SchoolId, session, exam);
+                var registration = DropDownManager.GetRegistrations(SessionUser.SchoolId, session, exam);
                 if (registration.Count() > 0 && registration != null)
                 {
                     int counter = 1;
@@ -123,7 +123,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                 int exam = int.Parse(ddlExam.SelectedValue.ToString());
                 int session = int.Parse(ddlYear.SelectedValue.ToString());
                 string userId = string.Empty;
-                var registration = dropManager.GetRegistrations(SessionUser.SchoolId, session, exam);
+                var registration = DropDownManager.GetRegistrations(SessionUser.SchoolId, session, exam);
                 if (registration.Count() > 0 && registration != null)
                 {
                     int counter = 1;
@@ -173,7 +173,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             int exam = int.Parse(ddlExam.SelectedValue.ToString());
             int session = int.Parse(ddlYear.SelectedValue.ToString());
             string userId = string.Empty;
-            var registration = dropManager.GetRegistrations(SessionUser.SchoolId, session, exam);
+            var registration = DropDownManager.GetRegistrations(SessionUser.SchoolId, session, exam);
             if (registration.Count() > 0 && registration != null)
             {
                 int counter = 1;
@@ -219,7 +219,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             int exam = int.Parse(ddlExam.SelectedValue.ToString());
             int session = int.Parse(ddlYear.SelectedValue.ToString());
             string userId = string.Empty;
-            var registration = dropManager.GetRegistrations(SessionUser.SchoolId, session, exam);
+            var registration = DropDownManager.GetRegistrations(SessionUser.SchoolId, session, exam);
             if (registration.Count() > 0 && registration != null)
             {
                 int counter = 1;
@@ -240,8 +240,8 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
         {
             try
             {
-                string filename = "Classlist-" + lblExamName.Text;
-                dropManager.GenerateExcel(BuildTableForExcelSecondary(), filename, "Sec_Entry", Response);
+                string filename = "Entry Schedule For-" + lblExamName.Text;
+                DropDownManager.GenerateExcel(BuildTableForExcelSecondary(), filename, "Sec_Entry", Response);
             }
             catch (Exception ex)
             {
@@ -253,8 +253,8 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
         {
             try
             {
-                string filename = "Classlist-" + lblExamName.Text;
-                dropManager.GenerateExcel(BuildTableForExcelPrimary(), filename, "Pri_Entry", Response);
+                string filename = "Entry Schedule For-" + lblExamName.Text;
+                DropDownManager.GenerateExcel(BuildTableForExcelPrimary(), filename, "Pri_Entry", Response);
             }
             catch (Exception ex)
             {

@@ -21,6 +21,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Models
         public string Name { get; set; }
 
         public bool Activated { get; set; }
+        public bool Is_Current { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExaminationRegistered> ExaminationRegistereds { get; set; }

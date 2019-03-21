@@ -11,8 +11,6 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Controller
 {
     public class StudentPersonalDatasController : ApiController
     {
-        DropDownManager dropDownManager = new DropDownManager();
-
         // GET api/<controller>
         //public IHttpActionResult Get()
         //{
@@ -24,7 +22,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Controller
         [HttpGet]
         public IHttpActionResult GetAllStudent(int? id)
         {
-          return Ok(dropDownManager.GetAllStudents(null));
+          return Ok(DropDownManager.GetAllStudents(null));
         }
 
         // GET api/<controller>/5

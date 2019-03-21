@@ -1,7 +1,9 @@
 ﻿using ESMEP_EdoStateMinistryOfEducationPortal_.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -32,6 +34,9 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure
         private GenericRepository<MenuSub> meunSubRepo;
         private GenericRepository<Title> titleRepo;
         private GenericRepository<Inspector> inspectorRepo;
+        private GenericRepository<SchoolQuota> quotaRepo;
+        private GenericRepository<SchoolApproval> SchoolApprovalRepo;
+        private GenericRepository<ApprovalReceipt> ApprovalReceiptRepo;
 
         private ESMEPContext Context
         {
@@ -131,7 +136,21 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure
         }
         public GenericRepository<Inspector> inspector
         {
-            get { return this.inspectorRepo ?? new GenericRepository<Inspector>(Context);  }
+            get { return this.inspectorRepo ?? new GenericRepository<Inspector>(Context); }
+
+        }
+             public GenericRepository<SchoolApproval> SchoolApproval
+        {
+            get { return this.SchoolApprovalRepo ?? new GenericRepository<SchoolApproval>(Context); }
+        }
+
+        public GenericRepository<ApprovalReceipt> ApprovalReceipt
+        {
+            get { return this.ApprovalReceiptRepo ?? new GenericRepository<ApprovalReceipt>(Context); }
+        }
+        public GenericRepository<SchoolQuota> Quota
+        {
+            get => this.quotaRepo ?? new GenericRepository<SchoolQuota>(Context);  
         }
 
         public void Save()
@@ -173,6 +192,33 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Infrastructure
             this.disposed = true;
         }
 
+        public string ExecuteNonQuery(string commandText, CommandType commandType, SqlParameter[] parameters = null)
+        {
+           
+                if (Context.Database.Connection.State == ConnectionState.Closed)
+                {
+                    Context.Database.Connection.Open();
+                }
+
+                var command = Context.Database.Connection.CreateCommand();
+                command.CommandText = commandText;
+                command.CommandType = commandType;
+
+                if (parameters != null)
+                {
+                    foreach (var parameter in parameters)
+                    {
+                        command.Parameters.Add(parameter);
+                    }
+                }
+
+                command.ExecuteNonQuery();
+                Save();
+                return parameters[0].Value.ToString();
+          
+          
+           
+        }
         public void Dispose()
         {
             Dispose(true);

@@ -16,14 +16,14 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             set { value = sessionUser; }
         }
 
-        DropDownManager dropManager = new DropDownManager();
+       // DropDownManager dropManager = new DropDownManager();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                dropManager.PopulateExam(ddlExam, SessionUser.CategoryId);
-                dropManager.PopulateSubject(ddlSubject);
-                dropManager.PopulateYear(ddlYear);
+                DropDownManager.PopulateExam(ddlExam, SessionUser.CategoryId);
+                DropDownManager.PopulateSubject(ddlSubject);
+                DropDownManager.PopulateYear(ddlYear);
             }
         }
                 
@@ -31,8 +31,8 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
         {
             try
             {
-                string filename = "Classlist-" + lblExamName.Text;
-                dropManager.GenerateExcel(GetTableForExecl(), filename, "Attendance", Response);
+                string filename = "Attendance For -" + lblExamName.Text;
+                DropDownManager.GenerateExcel(GetTableForExecl(), filename, "Attendance", Response);
             }
             catch (Exception ex)
             {
@@ -87,9 +87,10 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             int exam = int.Parse(ddlExam.SelectedValue.ToString());
             int session = int.Parse(ddlYear.SelectedValue.ToString());
             string subject = ddlSubject.SelectedValue.ToString();
-       
+            lblExamName.Text = ddlSubject.SelectedItem.Text;
 
-            var registration = dropManager.GetRegistrations(SessionUser.SchoolId, session, exam, subject);
+
+            var registration = DropDownManager.GetRegistrations(SessionUser.SchoolId, session, exam, subject);
             if(registration.Count() > 0 && registration != null)
             {
                 int counter = 1;
@@ -99,11 +100,10 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                     string examNum = item.StudentRegNum ?? $"{item.Examination.ExamCode}00{counter} " ;
                     string attendance = item.Attendance?.ToString();
                     string mark = item.TotalScore.ToString() ?? "";
-                    string remark = item.Remarks ?? "";
+                    string remark = item.AttendanceRemarks ?? "";
 
                     table.Rows.Add(counter, name, examNum, attendance, mark, remark);
                     counter++;
-                    lblExamName.Text = item.Examination.Name;
                 }
                 gvSchool.DataSource = table;
                 gvSchool.DataBind();
@@ -150,7 +150,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             //}
 
             //Models.School school = dropManager.GetSchoolByUserId(userId);
-            var registration = dropManager.GetRegistrations(SessionUser.SchoolId, session, exam, subject);
+            var registration = DropDownManager.GetRegistrations(SessionUser.SchoolId, session, exam, subject);
             if (registration.Count() > 0 && registration != null)
             {
                 int counter = 1;
@@ -162,7 +162,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                     string attendance = item.Attendance?.ToString();
                     string mark = item.TotalScore.ToString() ?? "";
                     string subjectName = item.Subject.Name;
-                    string remark = item.Remarks ?? "";
+                    string remark = item.AttendanceRemarks ?? "";
                     string examName = item.Examination.Name;
                     string examId = item.ExamId.ToString();
                     int sessionId = item.SessionId.Value;

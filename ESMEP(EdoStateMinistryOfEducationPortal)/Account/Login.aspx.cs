@@ -59,26 +59,36 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Account
                 {
                     case SignInStatus.Success:
                         IList<string> roles = null;
-                        var user =  signinManager.AuthenticationManager.AuthenticationResponseGrant.Identity;
-                            string userId = user.GetUserId();   
-                            roles = manager.GetRoles(userId);
+                        var user = signinManager.AuthenticationManager.AuthenticationResponseGrant.Identity;
+                        string userId = user.GetUserId();
+                        string Name = user.GetUserName();
+
+                        roles = manager.GetRoles(userId);
                         SessionObject sessionObject = new SessionObject
                         {
                             UserId = userId,
-                            Name = user.GetUserName()
+                            Name = Name
                         };
                         //Session.Add("Name", user.GetUserName().ToString());
                         //    Session.Add("UserId", userId);
 
-                            foreach (var item in roles)
-                            {                              
+                        foreach (var item in roles)
+                        {                              
                                 if (item.Contains("Super Admin"))
                                 {
-                                    //IdentityHelper.RedirectToReturnUrl("~/Modules/Home", Response);
-                                    Response.Redirect("~/Modules/Home");
+                                Session["EdoSessionObject"] = sessionObject;
+                                //IdentityHelper.RedirectToReturnUrl("~/Modules/Home", Response);
+                                Response.Redirect("~/Modules/Home");
                                    
                                 }
-                                else if (item.Contains("School"))
+                            else if (item.Contains("Admin"))
+                            {
+                                Session["EdoSessionObject"] = sessionObject;
+                                //IdentityHelper.RedirectToReturnUrl("~/Modules/Home", Response);
+                                Response.Redirect("~/Modules/Home");
+
+                            }
+                            else if (item.Contains("School"))
                                 {
                                 //IdentityHelper.RedirectToReturnUrl("~/Modules/School/AllStudentBySchool", Response);
 
@@ -90,11 +100,17 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Account
                                         sessionObject.SchoolType = school.SchoolTypeId;
                                         sessionObject.LgaId = school.LocalGovernmentID;
                                     }
-                                Session["EdoSessionObject"] = sessionObject;
-                                Response.Redirect("~/Modules/School/AllStudentBySchool");
+                                    Session["EdoSessionObject"] = sessionObject;
+                                    Response.Redirect("~/Modules/School/AllStudentBySchool");
                                 }
                                 else if (item.Contains("Inspector"))
                                 {
+                                var inspector = unitOfWork.inspector.Get(x => x.Email == Name).FirstOrDefault();
+                                if (inspector != null)
+                                {
+                                    sessionObject.LgaId = inspector.LocalGovernmentId;
+                                }
+                                Session["EdoSessionObject"] = sessionObject;
                                     Response.Redirect("~/Modules/Inspectors/InspectorSchools");
                                 }
                                 else

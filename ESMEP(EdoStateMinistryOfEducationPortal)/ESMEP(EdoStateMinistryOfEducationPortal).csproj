@@ -536,10 +536,17 @@
     <Content Include="fonts\simple-line-icons\fonts\Simple-Line-Iconsb26c.woff2" />
     <None Include="Properties\PublishProfiles\EdoStateMinistryofEducationPortal - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\EdoStateMinistryofEducationPortal - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\EdoStateMinistryofEducationPortal - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\EdoStateMinistryofEducationPortal - Web Deploy2.pubxml" />
+    <None Include="Properties\PublishProfiles\eRegistrationEdo - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Modules\Configuration\AllQuota.aspx" />
+    <Content Include="Modules\Configuration\AssignQuota.aspx" />
+    <Content Include="Modules\Configuration\ExamFeesSetup.aspx" />
     <Content Include="Modules\Home.aspx" />
     <Content Include="Modules\Inspectors\AddInspectorToLga.aspx" />
     <Content Include="Modules\Inspectors\AllInspectors.aspx" />
+    <Content Include="Modules\Inspectors\ApproveSchool.aspx" />
     <Content Include="Modules\Inspectors\InspectorSchools.aspx" />
     <Content Include="Modules\Registration\AddSchool.aspx" />
     <Content Include="Modules\Report\RegisteredSchool.aspx" />
@@ -555,7 +562,9 @@
     <Content Include="Modules\Registration\UploadSchool.aspx" />
     <Content Include="Modules\School\AboutSchool.aspx" />
     <Content Include="Modules\School\UploadAttendance.aspx" />
+    <Content Include="Modules\School\UploadEntrySchedule.aspx" />
     <Content Include="Modules\School\UploadStudent.aspx" />
+    <Content Include="Modules\School\XmlUploadStudents.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -706,8 +715,6 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
-    <Content Include="App_Code\UploadFile.cs" />
-    <Content Include="App_Code\excelplus.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -737,7 +744,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Infrastructure\Managers\DropDownManager.cs" />
+    <Compile Include="Infrastructure\Managers\GeneralUtility.cs" />
     <Compile Include="Infrastructure\Managers\StaticsManager.cs" />
+    <Compile Include="Models\ApprovalReceipt.cs" />
     <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Models\AspNetUserClaim.cs" />
@@ -756,6 +765,8 @@
     <Compile Include="Models\MenuSub.cs" />
     <Compile Include="Models\Relationship.cs" />
     <Compile Include="Models\School.cs" />
+    <Compile Include="Models\SchoolApproval.cs" />
+    <Compile Include="Models\SchoolQuota.cs" />
     <Compile Include="Models\SchoolType.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\State.cs" />
@@ -763,6 +774,27 @@
     <Compile Include="Models\StudentGuardianDetial.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Title.cs" />
+    <Compile Include="Modules\Configuration\AllQuota.aspx.cs">
+      <DependentUpon>AllQuota.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Configuration\AllQuota.aspx.designer.cs">
+      <DependentUpon>AllQuota.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Configuration\AssignQuota.aspx.cs">
+      <DependentUpon>AssignQuota.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Configuration\AssignQuota.aspx.designer.cs">
+      <DependentUpon>AssignQuota.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Configuration\ExamFeesSetup.aspx.cs">
+      <DependentUpon>ExamFeesSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Configuration\ExamFeesSetup.aspx.designer.cs">
+      <DependentUpon>ExamFeesSetup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -783,6 +815,13 @@
     </Compile>
     <Compile Include="Modules\Inspectors\AllInspectors.aspx.designer.cs">
       <DependentUpon>AllInspectors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Inspectors\ApproveSchool.aspx.cs">
+      <DependentUpon>ApproveSchool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Inspectors\ApproveSchool.aspx.designer.cs">
+      <DependentUpon>ApproveSchool.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modules\Inspectors\InspectorSchools.aspx.cs">
       <DependentUpon>InspectorSchools.aspx</DependentUpon>
@@ -889,6 +928,13 @@
     <Compile Include="Modules\School\UploadAttendance.aspx.designer.cs">
       <DependentUpon>UploadAttendance.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Modules\School\UploadEntrySchedule.aspx.cs">
+      <DependentUpon>UploadEntrySchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\UploadEntrySchedule.aspx.designer.cs">
+      <DependentUpon>UploadEntrySchedule.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Modules\School\UploadStudent.aspx.cs">
       <DependentUpon>UploadStudent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -896,7 +942,15 @@
     <Compile Include="Modules\School\UploadStudent.aspx.designer.cs">
       <DependentUpon>UploadStudent.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Modules\School\XmlUploadStudents.aspx.cs">
+      <DependentUpon>XmlUploadStudents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\School\XmlUploadStudents.aspx.designer.cs">
+      <DependentUpon>XmlUploadStudents.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DOEServices.cs" />
     <Compile Include="Services\InspectorServices.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

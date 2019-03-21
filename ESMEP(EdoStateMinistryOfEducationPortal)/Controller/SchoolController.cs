@@ -11,7 +11,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Controller
 {
     public class SchoolController : ApiController
     {
-        DropDownManager dropDownManager = new DropDownManager();
+        //DropDownManager dropDownManager = new DropDownManager();
         InspectorServices inspectorServices = new InspectorServices();
 
         // GET api/<controller>
@@ -19,7 +19,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Controller
         [HttpGet]
         public IHttpActionResult GetAllSchool(int? id)
         {
-            return Ok(dropDownManager.GetAllSchools());
+            return Ok(DropDownManager.GetAllSchools());
         }
 
         // GET api/<controller>/5

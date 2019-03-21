@@ -28,7 +28,7 @@
         <div class="tabbable-line">
             <ul class="nav customtab nav-tabs" role="tablist">
 	            <li class="nav-item"><a href="#tab1" class="nav-link active"  data-toggle="tab" >List View</a></li>
-	            <li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">Grid View</a></li>
+<%--	            <li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">Grid View</a></li>--%>
 	        </ul>
             <div class="tab-content">
                 <div class="tab-pane active fontawesome-demo" id="tab1">
@@ -45,14 +45,14 @@
 					            </div>
 					            <div class="card-body ">
 					                <div class="row">
-					                    <div class="col-md-6 col-sm-6 col-6">
+					                    <div class="col-md-6 col-sm-6 col-6 pull-left">
 					                        <div class="btn-group">
 					                            <a href="AddStudent" id="addRow" class="btn btn-info">
 					                                Add New <i class="fa fa-plus"></i>
 					                            </a>
 					                        </div>
 					                    </div>
-					                    <div class="col-md-6 col-sm-6 col-6">
+<%--					                    <div class="col-md-6 col-sm-6 col-6">
 					                        <div class="btn-group pull-right">
 					                            <a class="btn deepPink-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
 					                                <i class="fa fa-angle-down"></i>
@@ -72,14 +72,14 @@
 					                                </li>
 					                            </ul>
 					                        </div>
-					                    </div>
+					                    </div>--%>
 					                </div>
 					                <div class="table-scrollable">
 					                    <asp:GridView ID="gvStudents" CssClass="table table-striped table-bordered table-hover table-checkable order-column valign-middle"
                                             AutoGenerateColumns="false" runat="server">
 
                                             <Columns> 
-                                                <asp:TemplateField>
+                                                <asp:TemplateField Visible="false">
                                                         <ItemTemplate>                  
                                                             <asp:Label ID="lblStudentId" runat="server"  Text='<%# Bind("ID") %>' Visible="false"/>
                                                         </ItemTemplate>
@@ -174,10 +174,12 @@
         </div>
     </div>
 </div>
-                  <!-- data tables -->
-    <script src="../../Content/assets/plugins/datatables/jquery.dataTables.min.js" ></script>
- 	<script src="../../Content/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js" ></script>
-    <script src="../../Content/assets/js/pages/table/table_data.js" ></script>
+
+  <script type="text/javascript">  
+    $(document).ready(function () {  
+        $('#<%=gvStudents.ClientID%>').DataTable();  
+    });  
+</script>  
 <%-- Page Script --%>
 <%--    <script src="../../Scripts/Pages/AllStudent.js"></script>--%>
 </asp:Content>

@@ -12,8 +12,6 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
 {
     public partial class AllSchool : System.Web.UI.Page
     {
-        //UnitOfWork unitOfWork = new UnitOfWork();
-        DropDownManager dropDownManager = new DropDownManager();
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadAllStudent();
@@ -30,7 +28,7 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
             dt.Columns.Add("School");
             dt.Columns.Add("Status");
 
-            var student = dropDownManager.GetAllStudents(null);
+            var student = DropDownManager.GetAllStudents(null);
             if(student != null)
             {
                 int sn = 0;
@@ -40,22 +38,22 @@ namespace ESMEP_EdoStateMinistryOfEducationPortal_.Modules.School
                     string status = GetStatus(item.StudentId);
                     string Name = item.FirstName + " " + item.MiddleName + " " + item.LastName.ToString();
                     string sex = item.Sex.ToString();
-                    string Date = DateTime.Now.ToLongDateString();
+                    string Date = item.DateCreated ?? DateTime.Now.ToLongDateString();
                     string school = item.School.Name;
                     sn++;
 
                     dt.Rows.Add(sn, id, Name, sex, Date, school, status);
                 }
-
                 gvStudents.DataSource = dt;
                 gvStudents.DataBind();
+                gvStudents.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
 
         }
 
         public string GetStatus(int studentId)
         {
-            bool isRegistered = dropDownManager.IsStudentRegistered(studentId);
+            bool isRegistered = DropDownManager.IsStudentRegistered(studentId);
             if (isRegistered == true)
                 return "Registered";
             else
